@@ -34,11 +34,11 @@ const NewsCard = () => {
       
       <div className={styles['content-text']}>
         <p>
-          So you've got a new computer. Awesome! That humble metal box is the key to a wide world of potential. It can
+          So you&apos;ve got a new computer. Awesome! That humble metal box is the key to a wide world of potential. It can
           handle everything, from juggling your work and family to blowing off some steam on, uh, Steam.
         </p>
         <p>
-          But a new PC isn't like a new car; you can't just turn a key and put the pedal to the metal. Here are some
+          But a new PC isn&apos;t like a new car; you can&apos;t just turn a key and put the pedal to the metal. Here are some
           tips to create a minimalist yet modern computer setup that suits your style...
         </p>
       </div>
