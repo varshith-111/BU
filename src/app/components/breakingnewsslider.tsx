@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import './styles/breakingnewsslider.css';
+import styles from './styles/breakingnewsslider.module.css';
 
 const breakingNews = [
   {
@@ -60,24 +60,26 @@ export default function BreakingNewsSlider() {
   };
 
   return (
-    <section className="breaking-news-slider">
-      <div className="slider-container">
+    <section className={styles.breakingNewsSlider}>
+      <div className={styles.sliderContainer}>
         {breakingNews.map((news, index) => (
           <div
             key={news.id}
-            className={`breaking-news-item ${index === currentSlide ? 'active' : ''}`}
+            className={`${styles.breakingNewsItem} ${index === currentSlide ? styles.active : ''}`}
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
-            <Image
-              src={news.image}
-              alt={news.title}
-              layout="fill"
-              objectFit="cover"
-            />
-            <div className="news-overlay">
-              <div className="news-category">{news.title}</div>
+            <div className={styles.newsImageContainer}>
+              <Image
+                src={news.image}
+                alt={news.title}
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+            <div className={styles.newsOverlay}>
+              <div className={styles.newsCategory}>{news.title}</div>
               <h2>{news.content}</h2>
-              <div className="news-meta">
+              <div className={styles.newsMeta}>
                 <span>{news.time}</span>
                 <span>By {news.author}</span>
               </div>
@@ -85,17 +87,17 @@ export default function BreakingNewsSlider() {
           </div>
         ))}
       </div>
-      <button className="nav-button prev" onClick={handlePrevSlide}>
+      <button className={`${styles.navButton} ${styles.prev}`} onClick={handlePrevSlide}>
         <FaChevronLeft />
       </button>
-      <button className="nav-button next" onClick={handleNextSlide}>
+      <button className={`${styles.navButton} ${styles.next}`} onClick={handleNextSlide}>
         <FaChevronRight />
       </button>
-      <div className="slider-dots">
+      <div className={styles.sliderDots}>
         {breakingNews.map((_, index) => (
           <span
             key={index}
-            className={`dot ${index === currentSlide ? 'active' : ''}`}
+            className={`${styles.dot} ${index === currentSlide ? styles.active : ''}`}
             onClick={() => setCurrentSlide(index)}
           ></span>
         ))}

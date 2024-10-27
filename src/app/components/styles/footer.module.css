@@ -1,0 +1,42 @@
+.footernav {
+  background-color: #ffffff;
+  padding: 0px !important;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #e1e8ed;
+}
+
+.bottomNav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bottomNav button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #657786;
+  font-size: 10px;
+  transition: color 0.2s ease;
+}
+
+.bottomNav button svg {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.bottomNav button:hover,
+.bottomNav button:focus,
+.bottomNav button.active {
+  /* color: #1da1f2; */
+}
+
+.bottomNav button:focus {
+  outline: none;
+}

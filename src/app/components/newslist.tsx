@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "./styles/newslist.css";
+import styles from "./styles/newslist.module.css";
 import Image from "next/image";
 
 // Define a type for our news item
@@ -45,12 +45,12 @@ const newsItems: NewsItem[] = [
 
 export default function NewsList() {
   return (
-    <section className="news-list">
+    <section className={styles.newsList}>
       {newsItems.map((item) => (
         <Link
           key={item.id}
           href={`/article/${item.id}/${encodeURIComponent(item.title)}`}
-          className="news-item"
+          className={styles.newsItem}
         >
           <Image
             src={item.imageUrl}
@@ -58,7 +58,7 @@ export default function NewsList() {
             width={98}
             height={69}
           />
-          <div className="news-content">
+          <div className={styles.newsContent}>
             <h3>{item.title}</h3>
             <p>
               {item.timeAgo} • {item.views.toLocaleString()} views

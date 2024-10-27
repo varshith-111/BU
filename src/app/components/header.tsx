@@ -1,14 +1,14 @@
 'use client';
 
-import './styles/header.css';
+import styles from './styles/header.module.css'
 
 export default function Header() {
   return (
-    <header>
+    <header className={styles.headerNav}>
       <nav>
-        <button className="menu-btn">☰</button>
-        <h1>Discover</h1>
-        <span className="subheader">News from all over the world</span>
+        <button className={styles.menuBtn}>☰</button>
+        <h1 className={styles.hstyle}>Discover</h1>
+        <span className={styles.subheader}>News from all over the world</span>
       </nav>
     </header>
   );

@@ -1,24 +1,24 @@
 
-header {
+.headerNav {
   padding: 20px;
   background-color: #fff;
   text-align: center;
 }
 
-header nav {
+.headerNav nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.menu-btn {
+.menuBtn {
   background: none;
   border: none;
   font-size: 24px;
   cursor: pointer;
 }
 
-h1 {
+.hstyle {
   font-size: 24px;
   font-family: 'Merriweather', serif;
   margin: 0;
