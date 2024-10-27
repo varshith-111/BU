@@ -1,20 +1,6 @@
 import Image from "next/image";
 import styles from "./styles/newsCard.module.css";
-interface NewsCardProps {
-  article: {
-    id: string;
-    category: string;
-    description: string;
-    imageUrl: string;
-    publishedOn: string;
-    publishedBy: string;
-    name: string;
-    title: string;
-    tweetEmbed: string;
-    youtubeUrl: string;
-  };
-}
-const NewsCard = ({ article }: NewsCardProps) =>  {
+const NewsCard = () =>  {
   return (
     <div className={styles.container}>
       {/* Top bar with icons */}
