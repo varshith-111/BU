@@ -1,4 +1,4 @@
-import NewsCard from '@/app/components/newsCard'
+import NewsCard from '@/app/components/newsCard';
 import { notFound } from 'next/navigation'
 
 interface Article {

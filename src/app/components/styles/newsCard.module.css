@@ -1,0 +1,77 @@
+/* Container for the entire article */
+.container {
+    width: 375px;
+    margin: 20px auto;
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  /* Top bar (back arrow, icons) */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 18px;
+    color: #666;
+  }
+  .icon {
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+  }
+  /* Article details like date and reading time */
+  .article-details {
+    color: #aaa;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  /* Title and meta information */
+  .article-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  .author-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .author-info img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  .author-name {
+    font-size: 14px;
+    color: #333;
+  }
+  .tag {
+    background-color: #f2f2f2;
+    color: #666;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-left: auto;
+  }
+  /* Main image */
+  .main-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+  /* Content text */
+  .content-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    font-weight: 500;
+    color: #000;
+    font-size: 18px;
+    line-height: 24px;
+    font-family: 'Open Sans', sans-serif !important;
+  }
