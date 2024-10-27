@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./styles/newslist.module.css";
 import Image from "next/image";
+import { FiEye, FiClock } from 'react-icons/fi';
 
 // Define a type for our news item
 type NewsItem = {
@@ -136,17 +137,26 @@ export default function NewsList() {
           href={`/article/${item.id}/${encodeURIComponent(item.title)}`}
           className={styles.newsItem}
         >
-          <Image
-            src={item.imageUrl}
-            alt={`News Image for ${item.title}`}
-            width={98}
-            height={69}
-          />
+          <div className={styles.imageWrapper}>
+            <Image
+              src={item.imageUrl}
+              alt={`News Image for ${item.title}`}
+              width={100}
+              height={100}
+              style={{ objectFit: 'cover' }}
+              className={styles.image}
+            />
+          </div>
           <div className={styles.newsContent}>
-            <h3>{item.title}</h3>
-            <p>
-              {item.timeAgo} • {item.views.toLocaleString()} views
-            </p>
+            <h3 className={styles.title}>{item.title}</h3>
+            <div className={styles.meta}>
+              <span className={styles.timeAgo}>
+                <FiClock className={styles.icon} /> {item.timeAgo}
+              </span>
+              <span className={styles.views}>
+                <FiEye className={styles.icon} /> {item.views.toLocaleString()}
+              </span>
+            </div>
           </div>
         </Link>
       ))}
