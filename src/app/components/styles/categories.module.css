@@ -1,21 +1,63 @@
+.stickyWrapper {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
 .categories {
-    background-color: #fff;
-    padding: 10px 15px;
-  }
-  
-  .tabs {
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-  }
-  
-  .tabs li {
-    font-size: 16px;
-    padding: 10px 15px;
-    cursor: pointer;
-  }
-  
-  .tabs .active {
-    border-bottom: 3px solid black;
-  }
-  
+  background-color: #fff;
+  padding: 10px 15px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tabs {
+  display: flex;
+  list-style-type: none;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs li {
+  font-size: 16px;
+  padding: 10px 15px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tabs .active {
+  border-bottom: 3px solid black;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.leftArrow {
+  left: 5px;
+}
+
+.rightArrow {
+  right: 5px;
+}

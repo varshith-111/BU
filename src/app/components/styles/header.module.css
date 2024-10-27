@@ -1,8 +1,8 @@
-
 .headerNav {
   padding: 20px;
   background-color: #fff;
   text-align: center;
+  position: relative;
 }
 
 .headerNav nav {
@@ -14,8 +14,55 @@
 .menuBtn {
   background: none;
   border: none;
-  font-size: 24px;
   cursor: pointer;
+  z-index: 1000;
+}
+
+.hamburger {
+  width: 24px;
+  height: 18px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: #333;
+  border-radius: 1px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0px;
+}
+
+.hamburger span:nth-child(2) {
+  top: 6px;
+}
+
+.hamburger span:nth-child(3) {
+  top: 12px;
+}
+
+.hamburger.open span:nth-child(1) {
+  top: 9px;
+  transform: rotate(135deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.hamburger.open span:nth-child(3) {
+  top: 9px;
+  transform: rotate(-135deg);
 }
 
 .hstyle {
@@ -27,4 +74,42 @@
 .subheader {
   font-size: 14px;
   color: #aaa;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100vh;
+  background-color: #f8f8f8;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.menu.open {
+  left: 0;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 100px;
+}
+
+.menu ul li {
+  padding: 15px 30px;
+}
+
+.menu ul li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.menu ul li a:hover {
+  color: #007bff;
 }
