@@ -1,0 +1,21 @@
+.categories {
+    background-color: #fff;
+    padding: 10px 15px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+  
+  .tabs li {
+    font-size: 16px;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .tabs .active {
+    border-bottom: 3px solid black;
+  }
+  
