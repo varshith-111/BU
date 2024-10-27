@@ -1,11 +1,6 @@
 .newsList {
     background-color: #dcdcdc !important;
-    padding: 10px 15px;
-  }
-  
-  .newsList {
-    background-color: #fff;
-    padding: 10px 15px;
+    padding: 10px;
   }
   
   .newsItem,
