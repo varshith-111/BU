@@ -40,7 +40,7 @@ const breakingNews = [
   },
   {
     id: 5,
-    image: "https://picsum.photos/id/847/250/150",
+    image: "https://picsum.photos/id/421/250/150",
     title: "Breaking News",
     content: "\"We Have a Deal\": Biden Agrees to Bipartisan Infrastructure Deal",
     time: "2 hours ago",
@@ -48,7 +48,7 @@ const breakingNews = [
   },
   {
     id: 6,
-    image: "https://picsum.photos/id/847/250/150",
+    image: "https://picsum.photos/id/65/250/150",
     title: "Breaking News",
     content: "\"We Have a Deal\": Biden Agrees to Bipartisan Infrastructure Deal",
     time: "2 hours ago",
@@ -56,7 +56,7 @@ const breakingNews = [
   },
   {
     id: 7,
-    image: "https://picsum.photos/id/847/250/150",
+    image: "https://picsum.photos/id/333/250/150",
     title: "Breaking News",
     content: "\"We Have a Deal\": Biden Agrees to Bipartisan Infrastructure Deal",
     time: "2 hours ago",
@@ -64,7 +64,7 @@ const breakingNews = [
   },
   {
     id: 9,
-    image: "https://picsum.photos/id/847/250/150",
+    image: "https://picsum.photos/id/74/250/150",
     title: "Breaking News 9",
     content: "\"We Have a Deal\": Biden Agrees to Bipartisan Infrastructure Deal",
     time: "2 hours ago",
@@ -72,7 +72,7 @@ const breakingNews = [
   },
   {
     id: 9,
-    image: "https://picsum.photos/id/847/250/150",
+    image: "https://picsum.photos/id/34/250/150",
     title: "Breaking News 10",
     content: "\"We Have a Deal\": Biden Agrees to Bipartisan Infrastructure Deal",
     time: "2 hours ago",

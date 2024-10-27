@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import styles from './styles/header.module.css'
 
 export default function Header() {
@@ -20,7 +21,9 @@ export default function Header() {
             <span></span>
           </div>
         </button>
-        <h1 className={styles.hstyle}>Discover</h1>
+        <Link href="/" className={styles.anchor}>
+          <h1 className={styles.hstyle}>Discover</h1>
+        </Link>
         <span className={styles.subheader}>News from all over the world</span>
       </nav>
       <div className={`${styles.menu} ${isMenuOpen ? styles.open : ''}`}>
