@@ -44,5 +44,5 @@ export default async function ArticlePage({ params }: { params: { slug: string[]
     notFound();
   }
 
-  return <NewsCard article={article} />;
+  return <NewsCard/>;
 }
