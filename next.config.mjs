@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-      domains: ['nightlifetelevision.com', 'via.placeholder.com','picsum.photos'],
+      domains: ['nightlifetelevision.com', 'thepostnewsimages.blob.core.windows.net','via.placeholder.com','picsum.photos'],
     },
 };
 

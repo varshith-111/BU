@@ -3,9 +3,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import styles from './styles/categories.module.css';
+import { useNews } from '../context/NewsContext';
 
 export default function Categories() {
-  const [activeCategory, setActiveCategory] = useState('Sports');
+  const { category: activeCategory, setCategory: setActiveCategory } = useNews();
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const tabsRef = useRef<HTMLUListElement>(null);
