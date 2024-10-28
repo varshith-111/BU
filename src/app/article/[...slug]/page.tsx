@@ -20,18 +20,28 @@ interface Article {
 export default function ArticlePage({ params }: { params: { slug: string[] } }) {
   const { news } = useNews();
   const [article, setArticle] = useState<Article | null>(null);
+  const [isLoading, setIsLoading] = useState(true);  // Add loading state
   
   // Extract the ID from the first segment of the slug
   const id = params.slug[0];
 
   useEffect(() => {
-    const foundArticle = news.find(item => item.id === id);
-    setArticle(foundArticle || null);
+    if (news.length > 0) {  // Only search when news data is available
+      const foundArticle = news.find(item => item.id === id);
+      setArticle(foundArticle || null);
+    }
+    setIsLoading(false);
   }, [id, news]);
 
+  // Show loading state instead of 404
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // Only show 404 after we've confirmed the article doesn't exist
   if (!article) {
     notFound();
   }
 
-  return <NewsCard />;
+  return <NewsCard article={article} />;
 }

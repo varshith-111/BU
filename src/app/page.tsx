@@ -7,7 +7,7 @@ import SearchBar from "./components/searchbar";
 export default function Page() {
   return (
     <>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <BreakingNewsSlider />
       <Categories />
       <NewsList />
