@@ -36,7 +36,7 @@
 
 .newsContent {
   flex-grow: 1;
-  padding: 0px 12px 12px 12px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,4 +66,48 @@
 .icon {
   margin-right: 4px;
   font-size: 14px;
+}
+
+.skeleton {
+  pointer-events: none;
+}
+
+.skeletonImage {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+}
+
+.skeletonTitle {
+  height: 20px;
+  width: 80%;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeletonMeta {
+  height: 14px;
+  width: 30%;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+}
+
+.skeletonAnimation {
+  animation: shimmer 1.5s infinite linear;
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 0%,
+    #f5f5f5 50%,
+    #e0e0e0 100%
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }

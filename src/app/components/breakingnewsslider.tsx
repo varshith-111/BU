@@ -71,7 +71,7 @@ const breakingNews = [
     author: "Jonathan Weisman"
   },
   {
-    id: 9,
+    id: 10,
     image: "https://picsum.photos/id/34/250/150",
     title: "Breaking News 10",
     content: "\"We Have a Deal\": Biden Agrees to Bipartisan Infrastructure Deal",
