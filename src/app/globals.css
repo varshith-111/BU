@@ -86,3 +86,41 @@ footer {
   width: 100%;
   box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
 }
+
+
+
+/* styles.css */
+.skeleton {
+  background-color: #e0e0e0; /* Light gray background */
+  animation: pulse 1.5s infinite; /* Animation for a pulsing effect */
+  border-radius: 8px; /* Rounded corners */
+}
+
+@keyframes pulse {
+  0% {
+      background-color: #e0e0e0;
+  }
+  50% {
+      background-color: #d0d0d0; /* Slightly darker gray */
+  }
+  100% {
+      background-color: #e0e0e0;
+  }
+}
+
+.skeleton-header {
+  height: 40px;
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.skeleton-image {
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.skeleton-paragraph {
+  height: 20px;
+  width: 90%;
+  margin-bottom: 5px;
+}

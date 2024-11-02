@@ -40,7 +40,11 @@ export function NewsProvider({ children }: { children: ReactNode }) {
     async function fetchNews() {
       setLoading(true);
       try {
-        const response = await fetch(`http://20.205.138.193/api/Articles/GetAll`);
+        const apiUrl = category === 'ALL' 
+          ? `http://20.205.138.193/api/Articles/GetAll` 
+          : `http://20.205.138.193/api/Articles/GetByCategory/${category}`;
+        
+        const response = await fetch(apiUrl);
         const result: ApiResponse = await response.json();
         setNews(result.data); // Update to use data property from response
       } catch (error) {

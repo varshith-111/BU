@@ -12,7 +12,7 @@ export default function Categories() {
   const tabsRef = useRef<HTMLUListElement>(null);
 
   const categories = [
-    'Sports', 'Politics', 'Art', 'Food', 'Fashion', 'Technology',
+    'ALL', 'Sports', 'Politics', 'Art', 'Food', 'Fashion', 'Technology',
     'Science', 'Health', 'Travel', 'Business', 'Entertainment',
     'Education', 'Environment', 'Music', 'Literature'
   ];

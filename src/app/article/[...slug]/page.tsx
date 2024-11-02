@@ -35,7 +35,7 @@ export default function ArticlePage({ params }: { params: { slug: string[] } }) 
         fetch(`http://20.205.138.193/api/Articles/GetbyId/${id}`)
           .then(response => response.json())
           .then(data => {
-            setArticle(data);  // Set article from API response
+            setArticle(data.data);  // Set article from API response
             setIsLoading(false);  // Set loading to false after fetching
           })
           .catch(error => {
@@ -52,7 +52,16 @@ export default function ArticlePage({ params }: { params: { slug: string[] } }) 
 
   // Show loading state instead of 404
   if (isLoading) {
-    return <div>Loading11...</div>;
+    return (
+      <div>
+        <br></br>
+        <div className="skeleton skeleton-header" /> {/* Header skeleton */}
+        <div className="skeleton skeleton-image" /> {/* Image skeleton */}
+        <div className="skeleton skeleton-paragraph" /> {/* Paragraph skeleton */}
+        <div className="skeleton skeleton-paragraph" /> {/* Paragraph skeleton */}
+        <div className="skeleton skeleton-paragraph" /> {/* Paragraph skeleton */}
+      </div>
+    );
   }
 
   // Only show 404 after we've confirmed the article doesn't exist
