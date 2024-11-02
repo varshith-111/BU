@@ -26,9 +26,23 @@ export default function ArticlePage({ params }: { params: { slug: string[] } }) 
   const id = params.slug[0];
 
   useEffect(() => {
-    if (news.length > 0) {  // Only search when news data is available
-      const foundArticle = news.find(item => item.id === id);
-      setArticle(foundArticle || null);
+    if (id) {  // Check if ID is present
+      if (news.length > 0) {  // Only search when news data is available
+        const foundArticle = news.find(item => item.id === id);
+        setArticle(foundArticle || null);
+      } else {  // If no news data, fetch from API
+        fetch(`http://20.205.138.193/api/Articles/GetbyId/${id}`)
+          .then(response => response.json())
+          .then(data => {
+            setArticle(data);  // Set article from API response
+          })
+          .catch(error => {
+            console.error('Error fetching article:', error);
+            setArticle(null);  // Handle error by setting article to null
+          });
+      }
+    } else {
+      setArticle(null);  // Handle case where ID is not present
     }
     setIsLoading(false);
   }, [id, news]);

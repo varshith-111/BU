@@ -38,15 +38,17 @@ export default function NewsList() {
           className={styles.newsItem}
         >
           <div className={styles.imageWrapper}>
-            <Image
-              src={item.imageUrl && item.imageUrl.length > 0 ? item.imageUrl[0] : '/default-image.jpg'}
-              alt={`News Image for ${item.title}`}
-              width={100}
-              height={100}
-              style={{ objectFit: 'cover' }}
-              className={styles.image}
-              priority={false}
-            />
+            {Array.isArray(item.imageUrl) && item.imageUrl.length > 0 && (
+              <Image
+                src={item.imageUrl[0]}
+                alt={`News Image for ${item.title}`}
+                width={100}
+                height={100}
+                style={{ objectFit: 'cover' }}
+                className={styles.image}
+                priority={false}
+              />
+            )}
           </div>
           <div className={styles.newsContent}>
             <h3 className={styles.title}>{item.title}</h3>

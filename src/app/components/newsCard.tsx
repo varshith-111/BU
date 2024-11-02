@@ -37,13 +37,15 @@ const NewsCard = ({ article }: NewsCardProps) => {
         <IoShareSocial className={styles.shareIcon} />
       </div>
       
-      <Image
-        src={article.imageUrl[0]} // Using the first image from the array
-        alt={article.title}
-        className={styles['main-image']}
-        width={800}
-        height={400}
-      />
+      {Array.isArray(article.imageUrl) && article.imageUrl.length > 0 && (
+        <Image
+          src={article.imageUrl[0]} // Using the first image from the array
+          alt={article.title}
+          className={styles['main-image']}
+          width={800}
+          height={400}
+        />
+      )}
       
       <div className={styles['content-text']}>
         <p>{article.header}</p>
