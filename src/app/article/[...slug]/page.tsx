@@ -30,26 +30,29 @@ export default function ArticlePage({ params }: { params: { slug: string[] } }) 
       if (news.length > 0) {  // Only search when news data is available
         const foundArticle = news.find(item => item.id === id);
         setArticle(foundArticle || null);
+        setIsLoading(false);  // Set loading to false after finding article
       } else {  // If no news data, fetch from API
         fetch(`http://20.205.138.193/api/Articles/GetbyId/${id}`)
           .then(response => response.json())
           .then(data => {
             setArticle(data);  // Set article from API response
+            setIsLoading(false);  // Set loading to false after fetching
           })
           .catch(error => {
             console.error('Error fetching article:', error);
             setArticle(null);  // Handle error by setting article to null
+            setIsLoading(false);  // Set loading to false on error
           });
       }
     } else {
       setArticle(null);  // Handle case where ID is not present
+      setIsLoading(false);  // Set loading to false if no ID
     }
-    setIsLoading(false);
   }, [id, news]);
 
   // Show loading state instead of 404
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Loading11...</div>;
   }
 
   // Only show 404 after we've confirmed the article doesn't exist
