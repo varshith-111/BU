@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styles from "./styles/newslist.module.css";
 import Image from "next/image";
-import { FiEye, FiClock } from 'react-icons/fi';
+import {FiClock } from 'react-icons/fi';
 import { useNews } from '../context/NewsContext';
 
 const NewsListSkeleton = () => (
