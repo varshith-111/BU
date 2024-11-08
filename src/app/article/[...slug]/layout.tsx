@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ title, description, imageUrl, children 
   return (
     <>
       <Head>
-        <title>Default Title</title>
+        <title>{title || 'Default Title'}</title>
         <meta name="description" content={description || 'Default description'} />
         <meta property="og:image" content={imageUrl || '/default-image.jpg'} />
         <meta property="og:title" content={title || 'Default Title'} />
