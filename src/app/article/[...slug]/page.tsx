@@ -1,11 +1,7 @@
-'use client';
-
 import NewsCard from '@/app/components/newsCard';
-import { useNews } from '@/app/context/NewsContext';
 import { notFound } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import Layout from './layout'; // Import the layout component
 
-// Update interface to match NewsItem type from context
 interface Article {
   id: string;
   imageUrl: string[];
@@ -17,57 +13,28 @@ interface Article {
   publishedBy: string;
 }
 
-export default function ArticlePage({ params }: { params: { slug: string[] } }) {
-  const { news } = useNews();
-  const [article, setArticle] = useState<Article | null>(null);
-  const [isLoading, setIsLoading] = useState(true);  // Add loading state
-  
-  // Extract the ID from the first segment of the slug
+export default async function ArticlePage({ params }: { params: { slug: string[] } }) {
   const id = params.slug[0];
 
-  useEffect(() => {
-    if (id) {  // Check if ID is present
-      if (news.length > 0) {  // Only search when news data is available
-        const foundArticle = news.find(item => item.id === id);
-        setArticle(foundArticle || null);
-        setIsLoading(false);  // Set loading to false after finding article
-      } else {  // If no news data, fetch from API
-        fetch(`http://20.205.138.193/api/Articles/GetbyId/${id}`)
-          .then(response => response.json())
-          .then(data => {
-            setArticle(data.data);  // Set article from API response
-            setIsLoading(false);  // Set loading to false after fetching
-          })
-          .catch(error => {
-            console.error('Error fetching article:', error);
-            setArticle(null);  // Handle error by setting article to null
-            setIsLoading(false);  // Set loading to false on error
-          });
-      }
-    } else {
-      setArticle(null);  // Handle case where ID is not present
-      setIsLoading(false);  // Set loading to false if no ID
-    }
-  }, [id, news]);
+  let article: Article | null = null;
 
-  // Show loading state instead of 404
-  if (isLoading) {
-    return (
-      <div>
-        <br></br>
-        <div className="skeleton skeleton-header" /> {/* Header skeleton */}
-        <div className="skeleton skeleton-image" /> {/* Image skeleton */}
-        <div className="skeleton skeleton-paragraph" /> {/* Paragraph skeleton */}
-        <div className="skeleton skeleton-paragraph" /> {/* Paragraph skeleton */}
-        <div className="skeleton skeleton-paragraph" /> {/* Paragraph skeleton */}
-      </div>
-    );
+  if (id) {
+    const res = await fetch(`http://20.205.138.193/api/Articles/GetbyId/${id}`);
+    const data = await res.json();
+    article = data.data || null;  // Set article from API response
   }
 
-  // Only show 404 after we've confirmed the article doesn't exist
   if (!article) {
     notFound();
   }
 
-  return <NewsCard article={article} />;
+  return (
+    <Layout
+      title={article?.title}
+      description={article?.description}
+      imageUrl={article?.imageUrl[0]}
+    >
+      <NewsCard article={article} />
+    </Layout>
+  );
 }
