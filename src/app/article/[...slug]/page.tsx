@@ -1,6 +1,6 @@
 import NewsCard from '@/app/components/newsCard';
 import { notFound } from 'next/navigation';
-import Layout from './layout'; // Import the layout component
+import Layout from './layout';
 
 interface Article {
   id: string;
@@ -30,9 +30,9 @@ export default async function ArticlePage({ params }: { params: { slug: string[]
 
   return (
     <Layout
-      title={article?.title}
-      description={article?.description}
-      imageUrl={article?.imageUrl[0]}
+      title={article?.title || 'Default Title'}
+      description={article?.description || 'Default description'}
+      imageUrl={article?.imageUrl[0] || '/default-image.jpg'}
     >
       <NewsCard article={article} />
     </Layout>
