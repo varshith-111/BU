@@ -55,7 +55,7 @@ export function NewsProvider({ children }: { children: ReactNode }) {
         
         // Create an HTTPS agent that ignores certificate errors
         const agent = new https.Agent({  
-          rejectUnauthorized: false // Bypass SSL certificate validation
+          rejectUnauthorized: false // Bypass SSL certificate validation (use with caution in production)
         });
 
         const response = await axios.get(apiUrl, { httpsAgent: agent });
@@ -63,6 +63,7 @@ export function NewsProvider({ children }: { children: ReactNode }) {
         setNews(result.data); // Update to use data property from response
       } catch (error) {
         console.error('Error fetching news:', error);
+        alert(`Failed to fetch news: ${(error as Error).message}`); // Notify user of the error
       } finally {
         setLoading(false);
       }
