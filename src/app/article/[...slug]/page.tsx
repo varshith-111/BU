@@ -12,8 +12,10 @@ interface Article {
   publishedBy: string;
 }
 
+
 const fetchArticleById = async (id: string): Promise<Article | null> => {
-  const res = await fetch(`http://20.205.138.193/api/Articles/GetbyId/${id}`);
+  const baseUrl = 'http://20.205.138.193';
+  const res = await fetch(`${baseUrl}/api/Articles/GetbyId/${id}`);
   if (!res.ok) {
     return null;
   }
