@@ -1,6 +1,8 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import axios from 'axios';
+import https from 'https';
 
 // Update the NewsItem type to match the API response
 type NewsItem = {
@@ -46,13 +48,18 @@ export function NewsProvider({ children }: { children: ReactNode }) {
     async function fetchNews() {
       setLoading(true);
       try {
-        const baseUrl = 'https://20.205.138.193'; // Use HTTP directly
+        const baseUrl = 'https://20.205.138.193'; // Keep HTTPS
         const apiUrl = category === 'ALL' 
           ? `${baseUrl}/api/Articles/GetAll` 
           : `${baseUrl}/api/Articles/GetByCategory/${category}`;
         
-        const response = await fetch(apiUrl);
-        const result: ApiResponse = await response.json();
+        // Create an HTTPS agent that ignores certificate errors
+        const agent = new https.Agent({  
+          rejectUnauthorized: false // Bypass SSL certificate validation
+        });
+
+        const response = await axios.get(apiUrl, { httpsAgent: agent });
+        const result: ApiResponse = response.data; // Update to use axios response
         setNews(result.data); // Update to use data property from response
       } catch (error) {
         console.error('Error fetching news:', error);
