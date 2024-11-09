@@ -12,9 +12,9 @@ export default function Categories() {
   const tabsRef = useRef<HTMLUListElement>(null);
 
   const categories = [
-    'ALL', 'Sports', 'Politics', 'Art', 'Food', 'Fashion', 'Technology',
+     'ALL', 'Politics', 'Art', 'Food', 'Fashion', 'Technology',
     'Science', 'Health', 'Travel', 'Business', 'Entertainment',
-    'Education', 'Environment', 'Music', 'Literature'
+    'Education', 'Environment', 'Sports', 'Literature'
   ];
 
   const checkArrows = () => {
