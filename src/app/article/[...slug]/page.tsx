@@ -24,7 +24,7 @@ const fetchArticleById = async (id: string): Promise<Article | null> => {
 };
 
 export async function generateMetadata({ params }: { params: { slug: string[] } }) {
-  const id = params.slug[0];
+  const id = await params.slug[0];
   const article = await fetchArticleById(id);
 
   if (!article) {
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
 }
 
 export default async function ArticlePage({ params }: { params: { slug: string[] } }) {
-  const id = params.slug[0];
+  const id = await params.slug[0];
   const article = await fetchArticleById(id);
 
   if (!article) {
