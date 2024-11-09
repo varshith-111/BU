@@ -33,7 +33,7 @@ const NewsContext = createContext<NewsContextType | undefined>(undefined);
 
 export function NewsProvider({ children }: { children: ReactNode }) {
   const [news, setNews] = useState<NewsItem[]>([]);
-  const [category, setCategory] = useState('Sports');
+  const [category, setCategory] = useState('ALL');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
