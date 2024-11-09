@@ -1,5 +1,7 @@
 import NewsCard from '@/app/components/newsCard';
 import { notFound } from 'next/navigation';
+import https from 'https';
+import { request } from 'https';
 
 interface Article {
   id: string;
@@ -12,15 +14,33 @@ interface Article {
   publishedBy: string;
 }
 
+const agent = new https.Agent({
+  rejectUnauthorized: false // Disable SSL verification
+});
 
 const fetchArticleById = async (id: string): Promise<Article | null> => {
-  const baseUrl = 'http://20.205.138.193';
-  const res = await fetch(`${baseUrl}/api/Articles/GetbyId/${id}`);
-  if (!res.ok) {
-    return null;
-  }
-  const data = await res.json();
-  return data.data || null;
+  const baseUrl = 'https://20.205.138.193';
+  
+  return new Promise((resolve, reject) => {
+    const req = request(`${baseUrl}/api/Articles/GetbyId/${id}`, { agent }, (res) => {
+      let data = '';
+
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      res.on('end', () => {
+        const jsonData = JSON.parse(data);
+        resolve(jsonData.data || null);
+      });
+    });
+
+    req.on('error', (e) => {
+      reject(e);
+    });
+
+    req.end();
+  });
 };
 
 export async function generateMetadata({ params }: { params: { slug: string[] } }) {
