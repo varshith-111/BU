@@ -1,32 +1,15 @@
-'use client';
+// 'use client';
 
 import Link from "next/link";
 import styles from "./styles/newslist.module.css";
 import Image from "next/image";
-import {FiClock } from 'react-icons/fi';
-import { useNews } from '../context/NewsContext';
+import { FiClock } from 'react-icons/fi';
+import { NewsItem } from "../types/newsItem";
 
-const NewsListSkeleton = () => (
-  <div className={styles.newsList}>
-    {[1, 2, 3, 4, 5].map((i) => (
-      <div key={i} className={`${styles.newsItem} ${styles.skeleton}`}>
-        <div className={`${styles.imageWrapper} ${styles.skeletonImage}`} />
-        <div className={styles.newsContent}>
-          <div className={`${styles.skeletonTitle} ${styles.skeletonAnimation}`} />
-          <div className={styles.meta}>
-            <div className={`${styles.skeletonMeta} ${styles.skeletonAnimation}`} />
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-);
 
-export default function NewsList() {
-  const { news, loading } = useNews();
-
-  if (loading) {
-    return <NewsListSkeleton />;
+export default function NewsList({ news }: { news: NewsItem[] }) {
+  if (!news || news.length === 0) {
+    return <div>No news available.</div>;
   }
 
   return (

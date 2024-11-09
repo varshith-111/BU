@@ -3,16 +3,18 @@
 import { useState, useRef, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import styles from './styles/categories.module.css';
-import { useNews } from '../context/NewsContext';
+import { useRouter, usePathname } from 'next/navigation';
 
-export default function Categories() {
-  const { category: activeCategory, setCategory: setActiveCategory } = useNews();
+export default function Categories({ setCategory }: { setCategory: (category: string) => void }) {
+  const [activeCategory, setActiveCategory] = useState('ALL');
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const tabsRef = useRef<HTMLUListElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const categories = [
-     'ALL', 'Politics', 'Art', 'Food', 'Fashion', 'Technology',
+    'ALL', 'Politics', 'Art', 'Food', 'Fashion', 'Technology',
     'Science', 'Health', 'Travel', 'Business', 'Entertainment',
     'Education', 'Environment', 'Sports', 'Literature'
   ];
@@ -21,7 +23,7 @@ export default function Categories() {
     if (tabsRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = tabsRef.current;
       setShowLeftArrow(scrollLeft > 0);
-      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 1); // -1 to account for potential rounding errors
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 1);
     }
   };
 
@@ -32,8 +34,21 @@ export default function Categories() {
   }, []);
 
   useEffect(() => {
-    window.history.pushState({}, '', `?category=${activeCategory}`);
+    router.push(`${pathname}?category=${activeCategory}`);
   }, [activeCategory]);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryFromUrl = urlParams.get('category');
+    if (categoryFromUrl && categories.includes(categoryFromUrl)) {
+      setActiveCategory(categoryFromUrl);
+    }
+  }, []);
+
+  const handleCategoryChange = (category: any) => {
+    setActiveCategory(category);
+    setCategory(category); // Update the category in the parent component
+  };
 
   const scroll = (direction: 'left' | 'right') => {
     if (tabsRef.current) {
@@ -62,7 +77,7 @@ export default function Categories() {
             <li
               key={category}
               className={activeCategory === category ? styles.active : ''}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => handleCategoryChange(category)}
             >
               {category}
             </li>

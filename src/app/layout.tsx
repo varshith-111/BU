@@ -36,7 +36,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-      <NewsProvider>
+      {/* <NewsProvider> */}
       <Header />
         <main>
           {children}
@@ -46,7 +46,7 @@ export default function RootLayout({
         />
         </main>
         <Footer />
-        </NewsProvider>
+        {/* </NewsProvider> */}
       </body>
     </html>
   );
