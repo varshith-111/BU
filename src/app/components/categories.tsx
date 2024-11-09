@@ -31,6 +31,10 @@ export default function Categories() {
     return () => window.removeEventListener('resize', checkArrows);
   }, []);
 
+  useEffect(() => {
+    window.history.pushState({}, '', `?category=${activeCategory}`);
+  }, [activeCategory]);
+
   const scroll = (direction: 'left' | 'right') => {
     if (tabsRef.current) {
       const scrollAmount = tabsRef.current.clientWidth / 2;
