@@ -7,11 +7,13 @@ import styles from './styles/breakingnewsslider.module.css';
 import axios from 'axios';
 import https from 'https';
 import { NewsItem } from '../types/newsItem';
+import { useRouter } from 'next/navigation';
 
 export default function BreakingNewsSlider() {
   const [breakingNews, setBreakingNews] = useState<NewsItem[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchBreakingNews = async () => {
@@ -45,6 +47,11 @@ export default function BreakingNewsSlider() {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % breakingNews.length);
   };
 
+  const handleCardClick = (id: any, title: string) => {
+    const formattedTitle = encodeURIComponent(title.replace(/ /g, '-'));
+    router.push(`/article/${id}/${formattedTitle}`);
+  };
+
   if (breakingNews.length === 0) {
     return null; // Return null or a loading indicator if no data
   }
@@ -57,6 +64,7 @@ export default function BreakingNewsSlider() {
             key={news.id}
             className={`${styles.breakingNewsItem} ${index === currentSlide ? styles.active : ''}`}
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            onClick={() => handleCardClick(news.id, news.title)}
           >
             <div className={styles.newsImageContainer}>
               <Image
