@@ -34,8 +34,11 @@ const NewsContext = createContext<NewsContextType | undefined>(undefined);
 export function NewsProvider({ children }: { children: ReactNode }) {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [category, setCategory] = useState(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('category') || 'ALL'; // Get category from URL or default to 'ALL'
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('category') || 'ALL'; // Get category from URL or default to 'ALL'
+    }
+    return 'ALL';
   });
   const [loading, setLoading] = useState(false);
 
