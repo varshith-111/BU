@@ -17,7 +17,7 @@ export default function NewsList({ news }: { news: NewsItem[] }) {
       {news.map((item) => (
         <Link
           key={item.id}
-          href={`/article/${item.id}/${encodeURIComponent(item.title.replace(/ /g, '-'))}`}
+          href={`/article/${item.id}/${item.category}/${encodeURIComponent(item.title.replace(/ /g, '-'))}`}
           className={styles.newsItem}
         >
           <div className={styles.imageWrapper}>

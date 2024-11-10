@@ -44,12 +44,11 @@ const fetchArticleById = async (id: string): Promise<Article | null> => {
 };
 
 export async function generateMetadata({ params }: { params: { slug: string[] } }) {
-  // Check if params.slug is an array and has at least one element
   if (!Array.isArray(params.slug) || params.slug.length === 0) {
-    notFound(); // Handle the case where slug is not valid
+    notFound();
   }
   
-  const id = params.slug[0]; // No need for await here
+  const id = params.slug[0];
   const article = await fetchArticleById(id);
 
   if (!article) {
@@ -76,8 +75,8 @@ export default async function ArticlePage({ params }: { params: { slug: string[]
   }
 
   return (
-    <main>
+    <>
       <NewsCard article={article} />
-    </main>
+    </>
   );
 }
