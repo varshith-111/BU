@@ -19,7 +19,7 @@ const agent = new https.Agent({
 });
 
 const fetchArticleById = async (id: string): Promise<Article | null> => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net/`;
   
   return new Promise((resolve, reject) => {
     const req = request(`${baseUrl}/api/Articles/GetbyId/${id}`, { agent }, (res) => {

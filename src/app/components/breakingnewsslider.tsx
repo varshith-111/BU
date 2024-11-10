@@ -18,7 +18,7 @@ export default function BreakingNewsSlider() {
   useEffect(() => {
     const fetchBreakingNews = async () => {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        const baseUrl = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net/`;
         const response = await axios.get(`${baseUrl}/api/Articles/GetByCategory/Art`, {
           httpsAgent: new https.Agent({ rejectUnauthorized: false })
         });

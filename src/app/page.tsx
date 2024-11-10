@@ -30,7 +30,7 @@ export default function Page() {
     const fetchNews = async () => {
       setLoading(true);
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        const baseUrl = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net/`;
         const apiUrl = activeCategory === 'ALL' 
           ? `${baseUrl}/api/Articles/GetAll` 
           : `${baseUrl}/api/Articles/GetByCategory/${activeCategory}`;
