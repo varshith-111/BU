@@ -18,9 +18,12 @@ export default function Page() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState(() => {
+  const isBrowser = typeof window !== 'undefined'
+  if(isBrowser){
     const urlParams = new URLSearchParams(window.location.search);
     const categoryFromUrl = urlParams.get('category');
     return categoryFromUrl && categories.includes(categoryFromUrl) ? categoryFromUrl : 'ALL';
+  }
   });
 
   useEffect(() => {
