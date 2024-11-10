@@ -31,7 +31,7 @@ const fetchArticlesByCategory = async (category: string, id: string): Promise<Ne
 
             allRes.on('end', () => {
               const allJsonData = JSON.parse(allData);
-              const filteredData = allJsonData.data?.filter((article: any) => article.id !== id) || [];
+              const filteredData = allJsonData.data?.filter((article: NewsItem) => article.id !== id) || [];
               resolve(filteredData);
             });
           }).end();
