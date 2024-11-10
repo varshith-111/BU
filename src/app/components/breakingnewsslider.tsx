@@ -47,7 +47,7 @@ export default function BreakingNewsSlider() {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % breakingNews.length);
   };
 
-  const handleCardClick = (id: any, title: string) => {
+  const handleCardClick = (id: string, title: string) => {
     const formattedTitle = encodeURIComponent(title.replace(/ /g, '-'));
     router.push(`/article/${id}/${formattedTitle}`);
   };
