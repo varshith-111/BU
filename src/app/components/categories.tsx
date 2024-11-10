@@ -28,22 +28,26 @@ export default function Categories({ setCategory }: { setCategory: (category: st
   };
 
   useEffect(() => {
-    checkArrows();
-    window.addEventListener('resize', checkArrows);
-    return () => window.removeEventListener('resize', checkArrows);
+    if (typeof window !== 'undefined') {
+      checkArrows();
+      window.addEventListener('resize', checkArrows);
+      return () => window.removeEventListener('resize', checkArrows);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryFromUrl = urlParams.get('category');
+      if (categoryFromUrl && categories.includes(categoryFromUrl)) {
+        setActiveCategory(categoryFromUrl);
+      }
+    }
   }, []);
 
   useEffect(() => {
     router.push(`${pathname}?category=${activeCategory}`);
   }, [activeCategory]);
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const categoryFromUrl = urlParams.get('category');
-    if (categoryFromUrl && categories.includes(categoryFromUrl)) {
-      setActiveCategory(categoryFromUrl);
-    }
-  }, []);
 
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
