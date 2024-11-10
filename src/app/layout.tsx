@@ -37,16 +37,18 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
       {/* <NewsProvider> */}
+      <main>
       <Header />
-        <main>
+ 
           {children}
           <Script
           src="https://platform.twitter.com/widgets.js"
           strategy="lazyOnload"
         />
-        </main>
-        <Footer />
+   
+        {/* <Footer /> */}
         {/* </NewsProvider> */}
+        </main>
       </body>
     </html>
   );

@@ -27,7 +27,7 @@ export default function Page() {
     const fetchNews = async () => {
       setLoading(true);
       try {
-        const baseUrl = 'https://20.205.138.193';
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
         const apiUrl = activeCategory === 'ALL' 
           ? `${baseUrl}/api/Articles/GetAll` 
           : `${baseUrl}/api/Articles/GetByCategory/${activeCategory}`;

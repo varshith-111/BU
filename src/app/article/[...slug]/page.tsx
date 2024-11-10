@@ -19,7 +19,7 @@ const agent = new https.Agent({
 });
 
 const fetchArticleById = async (id: string): Promise<Article | null> => {
-  const baseUrl = 'https://20.205.138.193';
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   
   return new Promise((resolve, reject) => {
     const req = request(`${baseUrl}/api/Articles/GetbyId/${id}`, { agent }, (res) => {

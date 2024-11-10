@@ -18,7 +18,7 @@ export default function BreakingNewsSlider() {
   useEffect(() => {
     const fetchBreakingNews = async () => {
       try {
-        const baseUrl = 'https://20.205.138.193'; 
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
         const response = await axios.get(`${baseUrl}/api/Articles/GetByCategory/Art`, {
           httpsAgent: new https.Agent({ rejectUnauthorized: false })
         });
