@@ -68,7 +68,7 @@ export default function BreakingNewsSlider() {
           >
             <div className={styles.newsImageContainer}>
               <Image
-                src={news.imageUrl[0]}
+                src={news.imageUrl && news.imageUrl.length > 0 ? news.imageUrl[0] : '/default-image.jpg'}
                 alt={news.title}
                 layout="fill"
                 objectFit="cover"

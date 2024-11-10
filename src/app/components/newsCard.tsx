@@ -27,16 +27,16 @@ const NewsCard = ({ article }: NewsCardProps) => {
       </h1>
 
       <div className={styles['author-info']}>
-        <Image
+        {/* <Image
           src="https://picsum.photos/id/64/96/96"
           alt={article.publishedBy}
           className={styles['author-avatar']}
           width={48}
           height={48}
-        />
+        /> */}
         <div className={styles['author-details']}>
-          <span className={styles['author-name']}>{article.publishedBy}</span>
-          <span className={styles['article-details']}>{article.publishedOn} • 10 Mins read</span>
+          {/* <span className={styles['author-name']}>{article.publishedBy}</span> */}
+          <span className={styles['article-details']}>{new Date(article.publishedOn).toLocaleDateString()} • 1 Mins read</span>
         </div>
         <IoShareSocial className={styles.shareIcon} />
       </div>

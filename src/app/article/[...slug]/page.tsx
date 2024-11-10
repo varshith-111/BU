@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
     openGraph: {
       title: article.title,
       description: article.description,
-      images: [article.imageUrl[0] || ''],
+      images: Array.isArray(article.imageUrl) && article.imageUrl.length > 0 ? [article.imageUrl[0]] : [''],
     },
   };
 }

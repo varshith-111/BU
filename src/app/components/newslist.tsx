@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styles from "./styles/newslist.module.css";
 import Image from "next/image";
-import { FiClock } from 'react-icons/fi';
+// import { FiClock } from 'react-icons/fi';
 import { NewsItem } from "../types/newsItem";
 
 
@@ -35,11 +35,11 @@ export default function NewsList({ news }: { news: NewsItem[] }) {
           </div>
           <div className={styles.newsContent}>
             <h3 className={styles.title}>{item.title}</h3>
-            <div className={styles.meta}>
+            {/* <div className={styles.meta}>
               <span className={styles.timeAgo}>
                 <FiClock className={styles.icon} /> {item.publishedOn}
               </span>
-            </div>
+            </div> */}
           </div>
         </Link>
       ))}
