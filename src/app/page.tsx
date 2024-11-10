@@ -49,6 +49,15 @@ export default function Page() {
     fetchNews();
   }, [activeCategory]);
 
+  useEffect(() => {
+    const isBrowser = typeof window !== 'undefined';
+    if (isBrowser) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryFromUrl = urlParams.get('category');
+        setActiveCategory(categoryFromUrl && categories.includes(categoryFromUrl) ? categoryFromUrl : 'ALL');
+    }
+  }, []);
+
   const NewsListSkeleton = () => (
     <div className={styles1.newsList}>
       {[1, 2, 3, 4, 5].map((i) => (
