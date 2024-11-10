@@ -33,7 +33,7 @@ export default function Categories({ setCategory }: { setCategory: (category: st
       window.addEventListener('resize', checkArrows);
       return () => window.removeEventListener('resize', checkArrows);
     }
-  }, []);
+  }, [categories]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -43,7 +43,7 @@ export default function Categories({ setCategory }: { setCategory: (category: st
         setActiveCategory(categoryFromUrl);
       }
     }
-  }, []);
+  }, [pathname, router]);
 
   useEffect(() => {
     router.push(`${pathname}?category=${activeCategory}`);

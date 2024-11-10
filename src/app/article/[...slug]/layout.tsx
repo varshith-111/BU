@@ -36,7 +36,7 @@ const fetchArticlesByCategory = async (category: string, id: string): Promise<Ne
             });
           }).end();
         } else {
-          const filteredData = jsonData.data.filter((article: any) => article.id !== id);
+          const filteredData = jsonData.data.filter((article: NewsItem) => article.id !== id);
           resolve(filteredData);
         }
       });
