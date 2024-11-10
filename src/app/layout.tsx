@@ -4,7 +4,6 @@ import "./globals.css";
 import Script from "next/script";
 import Footer from "./components/footer";
 import Header from "./components/header";
-import { NewsProvider } from "./context/NewsContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,7 +35,6 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-      {/* <NewsProvider> */}
       <main>
       <Header />
  
@@ -46,8 +44,7 @@ export default function RootLayout({
           strategy="lazyOnload"
         />
    
-        {/* <Footer /> */}
-        {/* </NewsProvider> */}
+        <Footer />
         </main>
       </body>
     </html>
