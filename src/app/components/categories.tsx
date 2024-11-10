@@ -45,7 +45,7 @@ export default function Categories({ setCategory }: { setCategory: (category: st
     }
   }, []);
 
-  const handleCategoryChange = (category: any) => {
+  const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
     setCategory(category); // Update the category in the parent component
   };
