@@ -7,7 +7,6 @@ import https from 'https';
 import BreakingNewsSlider from './breakingnewsslider';
 import Categories from './categories';
 import NewsList from './newslist';
-import Footer from './footer';
 
 const categories = [
   'ALL', 'Politics', 'Art', 'Food', 'Fashion', 'Technology',

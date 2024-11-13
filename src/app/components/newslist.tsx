@@ -1,8 +1,6 @@
 // 'use client';
 
-import Link from "next/link";
 import styles from "./styles/newslist.module.css";
-import Image from "next/image";
 // import { FiClock } from 'react-icons/fi';
 import { NewsItem } from "../types/newsItem";
 import ArticleCard from "./ArticleCard";

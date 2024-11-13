@@ -3,7 +3,6 @@ import React from "react";
 import https from "https";
 import { request } from "https";
 import { NewsItem } from "@/app/types/newsItem";
-import TopStories from "@/app/components/TopStories";
 
 const fetchArticlesByCategory = async (
   category: string,

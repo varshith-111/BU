@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./styles/topStories.module.css"; // Ensure this CSS file exists
 import Link from "next/link";
+import { NewsItem } from "../types/newsItem";
 
 const TopStories = () => {
-  const [stories, setStories] = useState<any[]>([]);
+  const [stories, setStories] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
