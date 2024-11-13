@@ -1,0 +1,23 @@
+/* Container styling */
+.container {
+    height: 250px;
+    display: flex;
+}
+
+/* First div styling */
+.flexItem1 {
+    flex: 1; /* Take available space */
+    background-color: lightgray; /* Just for visibility */
+}
+
+/* Second div styling (300px width) */
+.flexItem2 {
+    width: 300px; /* Just for visibility */
+}
+
+/* Media query to hide the 300px div on small screens */
+@media (max-width: 829px) {
+    .flexItem2 {
+        display: none;
+    }
+}

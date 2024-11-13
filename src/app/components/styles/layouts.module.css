@@ -1,0 +1,17 @@
+.mobileLayout {
+  display: block; /* Show mobile layout */
+}
+
+.desktopLayout {
+  display: none; /* Hide desktop layout */
+}
+
+@media (min-width: 768px) {
+  .mobileLayout {
+    display: none; /* Hide mobile layout on larger screens */
+  }
+
+  .desktopLayout {
+    display: block; /* Show desktop layout on larger screens */
+  }
+} 

@@ -28,24 +28,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-     <head>
+      <head>
         <Script
           src="https://platform.twitter.com/widgets.js"
           strategy="lazyOnload"
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-      <main>
-      <Header />
- 
+
+        <main style={{ maxWidth: '1100px', margin: '0 auto' }}>
+        <Header />
           {children}
-          <Script
+        </main>
+        <Script
           src="https://platform.twitter.com/widgets.js"
           strategy="lazyOnload"
         />
-   
         <Footer />
-        </main>
       </body>
     </html>
   );

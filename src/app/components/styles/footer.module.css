@@ -40,3 +40,9 @@
 .bottomNav button:focus {
   outline: none;
 }
+
+@media (min-width: 768px) { /* Adjust the width as needed for your breakpoint */
+  .footernav {
+    display: none; /* Hide the footer on desktop */
+  }
+}

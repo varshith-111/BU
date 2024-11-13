@@ -36,7 +36,7 @@ const NewsCard = ({ article }: NewsCardProps) => {
         /> */}
         <div className={styles['author-details']}>
           {/* <span className={styles['author-name']}>{article.publishedBy}</span> */}
-          <span className={styles['article-details']}>{new Date(article.publishedOn).toLocaleDateString()} • 1 Mins read</span>
+          <span className={styles['article-details']}>{article.publishedOn.split('T')[0]} • 1 Mins read</span>
         </div>
         <IoShareSocial className={styles.shareIcon} />
       </div>

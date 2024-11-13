@@ -1,0 +1,39 @@
+.card {
+    width: 300px;
+    background-color: #2c2c2c;
+    border-radius: 0px;
+    overflow: hidden;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 6px;
+  }
+  
+  .cardImage img {
+    width: 100%;
+    display: block;
+    height: 132px;
+  }
+  
+  .cardContent {
+    padding: 15px;
+    background-color: #fff;
+    color: black;
+  }
+  
+  .cardTitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    margin: 10px 0;
+  }
+  
+  .cardActions {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+  }
+  
+  .action {
+    cursor: pointer;
+  }
+  

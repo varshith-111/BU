@@ -19,7 +19,7 @@ export default function BreakingNewsSlider() {
     const fetchBreakingNews = async () => {
       try {
         const baseUrl = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net/`;
-        const response = await axios.get(`${baseUrl}/api/Articles/GetByCategory/Art`, {
+        const response = await axios.get(`${baseUrl}/api/Articles/GetAll`, {
           httpsAgent: new https.Agent({ rejectUnauthorized: false })
         });
         setBreakingNews(response.data.data);
@@ -79,6 +79,15 @@ export default function BreakingNewsSlider() {
               <h2>{news.title}</h2>
             </div>
           </div>
+        ))}
+      </div>
+      <div className={styles.sliderDots}>
+        {breakingNews.map((_, index) => (
+          <div
+            key={index}
+            className={`${styles.dot} ${index === currentSlide ? styles.active : ''}`}
+            onClick={() => setCurrentSlide(index)}
+          />
         ))}
       </div>
       <button className={`${styles.navButton} ${styles.prev}`} onClick={handlePrevSlide}>
