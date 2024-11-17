@@ -31,10 +31,12 @@ const PhotographyCard: React.FC = () => {
       {newsItem && (
         <div className={styles.card}>
           <div className={styles.cardImage}>
-            <Image src={newsItem.imageUrl[0]} alt="Photography" width={500} height={300} />
+            {newsItem.imageUrl?.[0] && (
+              <Image src={newsItem.imageUrl[0]} alt="Photography" width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+            )}
           </div>
           <div className={styles.cardContent}>
-            <h3 className={styles.cardTitle}>{newsItem.description}</h3>
+            <h3 className={styles.cardTitle}>{newsItem.title}</h3>
           </div>
         </div>
       )}

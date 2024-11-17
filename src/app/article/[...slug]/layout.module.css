@@ -1,0 +1,17 @@
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.leftContainer {
+    width: 20%;
+}
+
+.middleContainer {
+    width: 55%;
+}
+
+.rightContainer {
+    width: 25%;
+}

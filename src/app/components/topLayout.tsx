@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles/topLayout.module.css';
 import BreakingNewsSlider from './breakingnewsslider';
 import PhotographyCard from './PhotographyCard';
+import TopStories from './TopStories';
 
 const TopLayout: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const TopLayout: React.FC = () => {
         <BreakingNewsSlider/>
       </div>
       <div className={styles.flexItem2}>
-      <PhotographyCard/>
+        <TopStories numberOfStories={2} showSeeMore={false} />
       </div>
     </div>
   );

@@ -1,21 +1,17 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './styles/card.module.css';
-
-interface Article {
-  imageUrl: string;
-  title: string;
-  time: string;
-}
+import { NewsItem } from '../types/newsItem';
 
 interface CardProps {
-  article: Article;
+  article: NewsItem;
 }
 
 const Card: React.FC<CardProps> = ({ article }) => {
   return (
-    <div className={styles.article}>
+    <Link href={`/article/${article.id}/${article.category}/${encodeURIComponent(article.title.replace(/ /g, '-'))}`} className={styles.article}>
       <Image
-        src={article.imageUrl}
+        src={article.imageUrl[0]}
         alt={article.title}
         width={100}
         height={69}
@@ -23,9 +19,9 @@ const Card: React.FC<CardProps> = ({ article }) => {
       />
       <div className={styles.articleContent}>
         <h3 className={styles.articleTitle}>{article.title}</h3>
-        {/* <span className={styles.articleTime}>[{article.time}]</span> */}
+        {/* <span className={styles.articleTime}>[{article.publishedOn}]</span> */}
       </div>
-    </div>
+    </Link>
   );
 };
 

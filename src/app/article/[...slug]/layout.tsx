@@ -1,68 +1,48 @@
+'use client';
 import NewsList from "@/app/components/newslist";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import https from "https";
-import { request } from "https";
+import axios from "axios";
 import { NewsItem } from "@/app/types/newsItem";
+import styles from "./layout.module.css";
+import TopStories from "@/app/components/TopStories";
+import CardView from "@/app/components/CardView";
 
+// Function to fetch articles by category
 const fetchArticlesByCategory = async (
   category: string,
   id: string
 ): Promise<NewsItem[]> => {
   const baseUrl = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net`;
 
-  const agent = new https.Agent({
-    rejectUnauthorized: false,
-  });
-  return new Promise((resolve, reject) => {
-    const req = request(
-      `${baseUrl}/api/Articles/GetByCategory/${category}`,
-      { agent },
-      (res) => {
-        let data = "";
-
-        res.on("data", (chunk) => {
-          data += chunk;
-        });
-
-        res.on("end", () => {
-          const jsonData = JSON.parse(data);
-          if (!jsonData.data?.length || jsonData.data.length <= 1) {
-            // If no articles found for category or only one article, fetch all articles
-            request(`${baseUrl}/api/Articles/GetAll`, { agent }, (allRes) => {
-              let allData = "";
-
-              allRes.on("data", (chunk) => {
-                allData += chunk;
-              });
-
-              allRes.on("end", () => {
-                const allJsonData = JSON.parse(allData);
-                const filteredData =
-                  allJsonData.data?.filter(
-                    (article: NewsItem) => article.id !== id
-                  ) || [];
-                resolve(filteredData);
-              });
-            }).end();
-          } else {
-            const filteredData = jsonData.data.filter(
-              (article: NewsItem) => article.id !== id
-            );
-            resolve(filteredData);
-          }
-        });
-      }
-    );
-
-    req.on("error", (e) => {
-      reject(e);
+  try {
+    // Fetch articles by category
+    const response = await axios.get(`${baseUrl}/api/Articles/GetByCategory/${category}`, {
+      httpsAgent: new https.Agent({ rejectUnauthorized: false }),
     });
+    const jsonData = response.data;
 
-    req.end();
-  });
+    // If no articles or only one article, fetch all articles
+    if (!jsonData.data?.length || jsonData.data.length <= 1) {
+      const allResponse = await axios.get(`${baseUrl}/api/Articles/GetAll`, {
+        httpsAgent: new https.Agent({ rejectUnauthorized: false }),
+      });
+      const allJsonData = allResponse.data;
+
+      // Filter out the current article
+      return allJsonData.data?.filter((article: NewsItem) => article.id !== id) || [];
+    }
+
+    // Filter out the current article from the fetched category articles
+    return jsonData.data.filter((article: NewsItem) => article.id !== id);
+  } catch (error) {
+    console.error("Error fetching articles:", error);
+    throw new Error(`Error fetching articles: ${error}`);
+  }
 };
 
-export default async function ArticleLayout({
+// Main layout component
+export default function ArticleLayout({
   children,
   params,
 }: {
@@ -71,30 +51,85 @@ export default async function ArticleLayout({
 }) {
   const category = params.slug[1];
   const id = params.slug[0];
-  const relatedArticles: NewsItem[] = await fetchArticlesByCategory(
-    category,
-    id
-  );
+  const [relatedArticles, setRelatedArticles] = useState<NewsItem[]>([]);
+
+  // Fetch articles when the component mounts or the category/id changes
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const articles = await fetchArticlesByCategory(category, id);
+        setRelatedArticles(articles);
+      } catch (error) {
+        console.error("Error fetching related articles:", error);
+      }
+    };
+
+    fetchArticles();
+  }, [category, id]);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Handle responsiveness
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
-      <main>
-        {children}
-        <h2
-          style={{
-            fontSize: "1.4rem",
-            fontWeight: "500",
-            margin: "1rem 0 0.5rem 0",
-            padding: "0 1.5rem",
-            color: "#333",
-            borderLeft: "4px solid #3b82f6",
-            paddingLeft: "1rem",
-          }}
-        >
-          More For You
-        </h2>
-        <NewsList news={relatedArticles} />
-      </main>
+      {isMobile ? (
+        <main>
+          {children}
+          <h2
+            style={{
+              fontSize: "1.4rem",
+              fontWeight: "500",
+              margin: "1rem 0 0.5rem 0",
+              padding: "0 1.5rem",
+              color: "#333",
+              borderLeft: "4px solid #3b82f6",
+              paddingLeft: "1rem",
+            }}
+          >
+            More For You
+          </h2>
+          <NewsList news={relatedArticles} />
+        </main>
+      ) : (
+        <main className={styles.mainContainer}>
+          <div className={styles.leftContainer}>
+            {relatedArticles.map((article) => (
+              <CardView key={article.id} newsItem={article} />
+            ))}
+          </div>
+          <div className={styles.middleContainer}>
+            {children}
+            <h2
+            style={{
+              fontSize: "1.4rem",
+              fontWeight: "500",
+              margin: "1rem 0 0.5rem 0",
+              padding: "0 1.5rem",
+              color: "#333",
+              borderLeft: "4px solid #3b82f6",
+              paddingLeft: "1rem",
+            }}
+          >
+            More For You
+          </h2>
+          <NewsList news={relatedArticles} />
+          </div>
+          <div className={styles.rightContainer}>
+            <TopStories/>
+          </div>
+         </main>
+      )}
     </>
   );
 }

@@ -1,39 +1,59 @@
 .card {
-    width: 300px;
-    background-color: #2c2c2c;
-    border-radius: 0px;
-    overflow: hidden;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    padding: 6px;
-  }
-  
-  .cardImage img {
-    width: 100%;
-    display: block;
-    height: 132px;
-  }
-  
-  .cardContent {
-    padding: 15px;
-    background-color: #fff;
-    color: black;
-  }
-  
-  .cardTitle {
-    font-size: 16px;
-    font-weight: bold;
-    color: black;
-    margin: 10px 0;
-  }
-  
-  .cardActions {
-    display: flex;
-    gap: 10px;
-    font-size: 14px;
-  }
-  
-  .action {
-    cursor: pointer;
-  }
-  
+  width: 320px;
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.cardImage img {
+  width: 100%;
+  display: block;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #444;
+}
+
+.cardContent {
+  padding: 16px;
+  background-color: #fff;
+  color: black;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin: 10px 0;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+}
+
+.cardActions {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.action {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.action:hover {
+  text-decoration: underline;
+}
