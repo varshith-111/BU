@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import styles from './styles/header.module.css'
+import styles from '../styles/header.module.css'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

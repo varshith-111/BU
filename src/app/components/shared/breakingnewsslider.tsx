@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import styles from './styles/breakingnewsslider.module.css';
+import styles from '../styles/breakingnewsslider.module.css';
 import axios from 'axios';
 import https from 'https';
-import { NewsItem } from '../types/newsItem';
 import { useRouter } from 'next/navigation';
+import { NewsItem } from '@/app/types/newsItem';
 
 export default function BreakingNewsSlider() {
   const [breakingNews, setBreakingNews] = useState<NewsItem[]>([]);

@@ -3,8 +3,8 @@
     max-width: 800px;
     padding: 16px;
     background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 0px;
+    border: 1px solid #e0e0e0;
   }
   /* Top bar (back arrow, icons) */
   .top-bar {

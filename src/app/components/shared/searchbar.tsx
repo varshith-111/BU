@@ -1,5 +1,5 @@
 'use client';
-import styles from './styles/searchbar.module.css';
+import styles from '../styles/searchbar.module.css';
 import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
 

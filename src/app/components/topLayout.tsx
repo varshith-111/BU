@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles/topLayout.module.css';
-import BreakingNewsSlider from './breakingnewsslider';
 import TopStories from './TopStories';
+import BreakingNewsSlider from './shared/breakingnewsslider';
 
 const TopLayout: React.FC = () => {
   return (

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import styles from './styles/categories.module.css';
+import styles from '../styles/categories.module.css';
 import { useRouter, usePathname } from 'next/navigation';
 
 export default function Categories({ setCategory }: { setCategory: (category: string) => void }) {

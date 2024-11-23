@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./styles/newsCard.module.css";
 import { IoShareSocial } from "react-icons/io5";
 import dynamic from "next/dynamic";
-const EmbedRenderer = dynamic(() => import('./EmbedRenderer'), { ssr: false });
+const EmbedRenderer = dynamic(() => import('./shared/EmbedRenderer'), { ssr: false });
 
 interface NewsCardProps {
   article: {

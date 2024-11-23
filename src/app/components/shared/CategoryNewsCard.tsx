@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./styles/articleCard.module.css";
-import { NewsItem } from "../types/newsItem";
+import styles from "../styles/articleCard.module.css";
+import { NewsItem } from "@/app/types/newsItem";
 
 
-export default function ArticleCard({ newsItem }: { newsItem: NewsItem }) {
+export default function CategoryNewsCard({ newsItem }: { newsItem: NewsItem }) {
   return (
     <Link href={`/article/${newsItem.id}/${newsItem.category}/${encodeURIComponent(newsItem.title.replace(/ /g, '-'))}`} className={styles.card}>
       {newsItem.imageUrl && newsItem.imageUrl.length > 0 && (

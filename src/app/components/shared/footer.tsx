@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { IoHomeOutline, IoHome, IoSearchOutline, IoSearch, IoPersonOutline, IoPerson } from 'react-icons/io5';
-import styles from './styles/footer.module.css';
+import styles from '../styles/footer.module.css';
 
 export default function Footer() {
   const [activeTab, setActiveTab] = useState('home');

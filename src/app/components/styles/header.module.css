@@ -3,6 +3,7 @@
   background-color: #fff;
   text-align: center;
   position: relative;
+  border-radius: 0px !important;
 }
 
 .headerNav nav {

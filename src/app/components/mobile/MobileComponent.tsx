@@ -1,12 +1,12 @@
 'use client';
 
-import styles1 from './styles/newslist.module.css';
+import styles1 from '../styles/newslist.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import https from 'https';
-import BreakingNewsSlider from './breakingnewsslider';
-import Categories from './categories';
-import NewsList from './newslist';
+import BreakingNewsSlider from '../shared/breakingnewsslider';
+import CategoryNewsList from '../shared/CategoryNewsList';
+import Categories from '../shared/Categories';
 
 const categories = [
   'ALL', 'Politics', 'Art', 'Food', 'Fashion', 'Technology',
@@ -81,7 +81,7 @@ export default function MobileComponent() {
     <>
       <BreakingNewsSlider />
       <Categories setCategory={setActiveCategory} />
-      {loading ? <NewsListSkeleton /> : <NewsList news={news} />
+      {loading ? <NewsListSkeleton /> : <CategoryNewsList news={news} />
       }
     </>
   );
