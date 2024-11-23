@@ -7,8 +7,8 @@ import { NewsItem } from "../types/newsItem";
 export default function ArticleCard({ newsItem }: { newsItem: NewsItem }) {
   return (
     <Link href={`/article/${newsItem.id}/${newsItem.category}/${encodeURIComponent(newsItem.title.replace(/ /g, '-'))}`} className={styles.card}>
-      <div className={styles.imageWrapper}>
-        {newsItem.imageUrl && (
+      {newsItem.imageUrl && newsItem.imageUrl.length > 0 && (
+        <div className={styles.imageWrapper}>
           <Image
             src={newsItem.imageUrl[0]}
             alt={`Image for ${newsItem.title}`}
@@ -17,8 +17,9 @@ export default function ArticleCard({ newsItem }: { newsItem: NewsItem }) {
             style={{ objectFit: 'cover' }}
             className={styles.image}
           />
-        )}
-      </div>
+        </div>
+      )}
+
       <div className={styles.content}>
         <h3 className={styles.title}>{newsItem.title}</h3>
       </div>

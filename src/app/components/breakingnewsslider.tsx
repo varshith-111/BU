@@ -18,7 +18,7 @@ export default function BreakingNewsSlider() {
   useEffect(() => {
     const fetchBreakingNews = async () => {
       try {
-        const baseUrl = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net/`;
+        const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
         const response = await axios.get(`${baseUrl}/api/Articles/GetAll`, {
           httpsAgent: new https.Agent({ rejectUnauthorized: false })
         });
@@ -66,14 +66,17 @@ export default function BreakingNewsSlider() {
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             onClick={() => handleCardClick(news.id, news.title)}
           >
-            <div className={styles.newsImageContainer}>
-              <Image
-                src={news.imageUrl && news.imageUrl.length > 0 ? news.imageUrl[0] : '/default-image.jpg'}
-                alt={news.title}
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
+            {news.imageUrl && news.imageUrl.length > 0 && (
+              <div className={styles.newsImageContainer}>
+                <Image
+                  src={news.imageUrl[0]}
+                  alt={news.title}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+            )}
+
             <div className={styles.newsOverlay}>
               <div className={styles.newsCategory}>{news.category}</div>
               <h2>{news.title}</h2>

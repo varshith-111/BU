@@ -6,7 +6,7 @@ import axios from "axios";
 import { NewsItem } from "@/app/types/newsItem";
 import styles from "./layout.module.css";
 import TopStories from "@/app/components/TopStories";
-import CardView from "@/app/components/CardView";
+//import CardView from "@/app/components/CardView";
 
 // Function to fetch articles by category
 const fetchArticlesByCategory = async (
@@ -105,7 +105,7 @@ export default function ArticleLayout({
         <main className={styles.mainContainer}>
           <div className={styles.leftContainer}>
             {relatedArticles.map((article) => (
-              <CardView key={article.id} newsItem={article} />
+              <div></div>
             ))}
           </div>
           <div className={styles.middleContainer}>

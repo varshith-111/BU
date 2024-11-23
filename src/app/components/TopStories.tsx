@@ -14,7 +14,7 @@ const TopStories = ({ numberOfStories = 3, showSeeMore = true }) => {
     const fetchTopStories = async () => {
       setLoading(true);
       try {
-        const baseUrl = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net/`;
+        const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
         const response = await axios.get(`${baseUrl}/api/Articles/GetAll`);
         setStories(response.data.data.slice(0, numberOfStories));
       } catch (error) {
@@ -39,7 +39,7 @@ const TopStories = ({ numberOfStories = 3, showSeeMore = true }) => {
         <div key={story.id} className={styles.storyItem}>
           <Link href={`/article/${story.id}/${story.category}/${encodeURIComponent(story.title.replace(/ /g, '-'))}`}>
             <h4 className={styles.title}>{story.title}</h4>
-            <p className={styles.description}>{story.description}</p>
+            {/* <p className={styles.description}>{story.description}</p> */}
             {/* <span className={styles.publishedOn}>{story.publishedOn}</span> */}
           </Link>
         </div>

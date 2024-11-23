@@ -53,7 +53,7 @@ const NewsCard = ({ article }: NewsCardProps) => {
 
       <div className={styles['content-text']}>
         <p>{article.header}</p>
-        <p>{article.description}</p>
+        <div dangerouslySetInnerHTML={{ __html: article.description }}></div>
       </div>
 
       {/* Conditionally render EmbedRenderer if xEmbed exists */}

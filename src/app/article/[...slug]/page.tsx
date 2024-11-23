@@ -19,7 +19,7 @@ const agent = new https.Agent({
 });
 
 const fetchArticleById = async (id: string): Promise<Article | null> => {
-  const baseUrl = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net/`;
+  const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
   
   return new Promise((resolve, reject) => {
     const req = request(`${baseUrl}/api/Articles/GetbyId/${id}`, { agent }, (res) => {

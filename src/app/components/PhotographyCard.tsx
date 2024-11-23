@@ -11,7 +11,7 @@ const PhotographyCard: React.FC = () => {
   useEffect(() => {
     const fetchBreakingNews = async () => {
       try {
-        const baseUrl = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net`;
+        const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net`;
         const response = await axios.get(`${baseUrl}/api/Articles/GetAll`, {
           httpsAgent: new https.Agent({ rejectUnauthorized: false })
         });
