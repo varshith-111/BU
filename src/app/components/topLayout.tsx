@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './styles/topLayout.module.css';
 import BreakingNewsSlider from './breakingnewsslider';
-import PhotographyCard from './PhotographyCard';
 import TopStories from './TopStories';
 
 const TopLayout: React.FC = () => {

@@ -104,9 +104,9 @@ export default function ArticleLayout({
       ) : (
         <main className={styles.mainContainer}>
           <div className={styles.leftContainer}>
-            {relatedArticles.map((article) => (
+            {/* {relatedArticles.map(() => (
               <div></div>
-            ))}
+            ))} */}
           </div>
           <div className={styles.middleContainer}>
             {children}
