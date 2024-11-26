@@ -1,20 +1,20 @@
+import { NewsItem } from '@/app/types/newsItem';
 import Image from 'next/image';
 
-const ArticleCard = () => {
+const ArticleCard = ({ newsItem }: { newsItem: NewsItem }) => {
   return (
     <div style={styles.card}>
-      <div style={styles.imageContainer}>
-        <Image
-          src="https://platinumimagestorage.blob.core.windows.net/imagecontainer/674205f8511a692d870ce477/20241123164236120_bike royal.jpg"
-          alt="Keyboard shortcuts"
-          style={{
-            objectFit: 'cover',
-          }}
-          fill // Makes the image responsive to its container
-        />
-      </div>
+      {newsItem.imageUrl && newsItem.imageUrl.length > 0 && (
+        <div style={styles.imageWrapper}>
+          <Image
+            src={newsItem.imageUrl[0]}
+            alt={`Image for ${newsItem.title}`}
+            width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }}
+          />
+        </div>
+      )}
       <div style={styles.cardText}>
-        <h3 style={styles.title}>16 essential keyboard shortcuts everyone should know</h3>
+        <h3 style={styles.title}>{newsItem.header}</h3>
       </div>
     </div>
   );
@@ -28,16 +28,16 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: 'black',
     display: 'inline-block',
     maxWidth: '300px',
-    margin: '4px',
+    // margin: '4px',
     border: '1px solid #e0e0e0'
   },
   imageContainer: {
     position: 'relative', // Ensures the container works with the `fill` prop
-   // width: '100%',
+    // width: '100%',
     height: '80px',
   },
   cardText: {
-    padding: '4px',
+    padding: '8px 4px',
   },
   title: {
     fontSize: '15px',

@@ -39,7 +39,7 @@ const TopStories = ({ numberOfStories = 3, showSeeMore = true }) => {
         <div key={story.id} className={styles.storyItem}>
           <Link href={`/article/${story.id}/${story.category}/${encodeURIComponent(story.title.replace(/ /g, '-'))}`}>
             <h4 className={styles.title}>{story.title}</h4>
-            {/* <p className={styles.description}>{story.description}</p> */}
+            <p className={styles.description}>{story.title}</p>
             {/* <span className={styles.publishedOn}>{story.publishedOn}</span> */}
           </Link>
         </div>
