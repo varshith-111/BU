@@ -6,7 +6,6 @@ import { NewsItem } from "@/app/types/newsItem";
 import styles from "./layout.module.css";
 import TopStories from "@/app/components/TopStories";
 import CategoryNewsList from "@/app/components/shared/CategoryNewsList";
-import ArticleCard from "@/app/components/shared/ArticleCard";
 import LeftBlog from "@/app/components/desktop/LeftBlog";
 
 const BASE_URL = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net`;

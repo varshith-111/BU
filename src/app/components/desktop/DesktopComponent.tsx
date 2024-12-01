@@ -6,7 +6,6 @@ import axios from "axios";
 import https from "https";
 import styles from "../styles/desktop.module.css";
 import Categories from "../shared/Categories";
-import DesktopArticleLayout from "./DesktopCategoriesLayout";
 import TopLayout from "../topLayout";
 import ThreeHundTwoFifty from "../advertisment/ThreeHundTwoFifty/ThreeHundTwoFifty";
 import DesktopCategoriesLayout from "./DesktopCategoriesLayout";
