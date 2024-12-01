@@ -7,6 +7,7 @@ import styles from "./layout.module.css";
 import TopStories from "@/app/components/TopStories";
 import CategoryNewsList from "@/app/components/shared/CategoryNewsList";
 import LeftBlog from "@/app/components/desktop/LeftBlog";
+import Categories from "@/app/components/shared/Categories";
 
 const BASE_URL = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net`;
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
@@ -83,6 +84,10 @@ export default function ArticleLayout({
   );
 
   return (
+    <>
+    <Categories setCategory={(category) => {
+      window.location.href = `/?category=${category}`;
+    }} />
     <main className={isMobile ? undefined : styles.mainContainer}>
       {isMobile ? (
         <>
@@ -106,5 +111,6 @@ export default function ArticleLayout({
         </>
       )}
     </main>
+    </>
   );
 }
