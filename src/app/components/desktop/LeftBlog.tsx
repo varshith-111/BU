@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ArticleCard from '../shared/ArticleCard';
+import { NewsItem } from '@/app/types/newsItem';
 
 const LeftBlog = () => {
-    const [articles, setArticles] = useState<any[]>([]);
+    const [articles, setArticles] = useState<NewsItem[]>([]);
     const [loading, setLoading] = useState(true);
 
     const baseUrl = 'https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/';
