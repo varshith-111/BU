@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import Link from 'next/link';
 import styles from '../styles/categories.module.css';
-import { usePathname } from 'next/navigation';
 
 export default function ArticleCategories() {
   const [showLeftArrow, setShowLeftArrow] = useState(false);

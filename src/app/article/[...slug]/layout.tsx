@@ -9,7 +9,6 @@ import CategoryNewsList from "@/app/components/shared/CategoryNewsList";
 import LeftBlog from "@/app/components/desktop/LeftBlog";
 import ArticleCategories from "@/app/components/shared/ArticleCategories";
 
-const BASE_URL = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net`;
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 const fetchArticlesByCategory = async (
