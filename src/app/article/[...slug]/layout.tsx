@@ -7,7 +7,7 @@ import styles from "./layout.module.css";
 import TopStories from "@/app/components/TopStories";
 import CategoryNewsList from "@/app/components/shared/CategoryNewsList";
 import LeftBlog from "@/app/components/desktop/LeftBlog";
-import Categories from "@/app/components/shared/Categories";
+import ArticleCategories from "@/app/components/shared/ArticleCategories";
 
 const BASE_URL = `https://thepostnews-aycjeyh6ffbaa5dm.canadacentral-01.azurewebsites.net`;
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
@@ -17,11 +17,14 @@ const fetchArticlesByCategory = async (
   id: string
 ): Promise<NewsItem[]> => {
   try {
-    const response = await axios.get(`${BASE_URL}/api/Articles/GetByCategory/${category}`, { httpsAgent });
+    const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
+    const response = await axios.get(`${baseUrl}/api/Articles/GetByCategory/${category}`);
     const articles = response.data?.data || [];
+    console.log('articles');
+    console.log(articles);
 
     if (articles.length <= 1) {
-      const allResponse = await axios.get(`${BASE_URL}/api/Articles/GetAll`, { httpsAgent });
+      const allResponse = await axios.get(`${baseUrl}/api/Articles/GetAll`, { httpsAgent });
       return allResponse.data?.data?.filter((article: NewsItem) => article.id !== id) || [];
     }
 
@@ -85,9 +88,7 @@ export default function ArticleLayout({
 
   return (
     <>
-    <Categories setCategory={(category) => {
-      window.location.href = `/?category=${category}`;
-    }} />
+    <ArticleCategories />
     <main className={isMobile ? undefined : styles.mainContainer}>
       {isMobile ? (
         <>

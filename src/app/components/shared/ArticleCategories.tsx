@@ -2,19 +2,17 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import Link from 'next/link';
 import styles from '../styles/categories.module.css';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
-export default function Categories({ setCategory }: { setCategory: (category: string) => void }) {
-  const [activeCategory, setActiveCategory] = useState('ALL');
+export default function ArticleCategories() {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const tabsRef = useRef<HTMLUListElement>(null);
-  const router = useRouter();
-  const pathname = usePathname();
 
   const categories = [
-    'ALL', 'Politics','Movies','Art', 'Food', 'Fashion', 'Technology',
+    'ALL', 'Politics', 'Movies', 'Art', 'Food', 'Fashion', 'Technology',
     'Science', 'Health', 'Travel', 'Business', 'Entertainment',
     'Education', 'Environment', 'Sports', 'Literature'
   ];
@@ -35,31 +33,13 @@ export default function Categories({ setCategory }: { setCategory: (category: st
     }
   }, [categories]);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const categoryFromUrl = urlParams.get('category');
-      if (categoryFromUrl && categories.includes(categoryFromUrl)) {
-        setActiveCategory(categoryFromUrl);
-      }
-    }
-  }, [pathname, router]);
-
-  useEffect(() => {
-    router.push(`${pathname}?category=${activeCategory}`);
-  }, [activeCategory]);
-
-  const handleCategoryChange = (category: string) => {
-    setActiveCategory(category);
-    setCategory(category); // Update the category in the parent component
-  };
 
   const scroll = (direction: 'left' | 'right') => {
     if (tabsRef.current) {
       const scrollAmount = tabsRef.current.clientWidth / 2;
       tabsRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
@@ -72,22 +52,23 @@ export default function Categories({ setCategory }: { setCategory: (category: st
             <FiChevronLeft />
           </button>
         )}
-        
+
         <ul 
           className={styles.tabs} 
           ref={tabsRef}
           onScroll={checkArrows}
         >
           {categories.map((category) => (
-            <li
-              key={category}
-              className={activeCategory === category ? styles.active : ''}
-              onClick={() => handleCategoryChange(category)}
-            >
-              {category}
+            <li key={category}>
+              <Link
+                href={`/?category=${category}`}
+              >
+                {category}
+              </Link>
             </li>
           ))}
         </ul>
+
         {showRightArrow && (
           <button className={`${styles.arrow} ${styles.rightArrow}`} onClick={() => scroll('right')}>
             <FiChevronRight />
