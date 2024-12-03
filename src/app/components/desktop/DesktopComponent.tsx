@@ -1,7 +1,7 @@
 "use client";
 
 import styles1 from "../styles/newslist.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import https from "https";
 import styles from "../styles/desktop.module.css";
@@ -42,6 +42,8 @@ export default function DesktopComponent() {
     }
   });
 
+  const hasFetched = useRef<string | null>(null); // Track fetched category
+
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true);
@@ -66,7 +68,11 @@ export default function DesktopComponent() {
       }
     };
 
-    fetchNews();
+    // Check if news has already been fetched for the current category
+    if (hasFetched.current !== activeCategory) {
+      hasFetched.current = activeCategory || "ALL"; // Update the fetched category
+      fetchNews();
+    }
   }, [activeCategory]);
 
   useEffect(() => {

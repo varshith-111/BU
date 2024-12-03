@@ -14,9 +14,13 @@ export default function BreakingNewsSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const hasFetched = useRef(false);
 
   useEffect(() => {
     const fetchBreakingNews = async () => {
+      if (hasFetched.current) return;
+      hasFetched.current = true;
+
       try {
         const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
         const response = await axios.get(`${baseUrl}/api/Articles/GetAll`, {
@@ -32,11 +36,13 @@ export default function BreakingNewsSlider() {
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % breakingNews.length);
-    }, 5000);
+    if (breakingNews.length > 0) {
+      const timer = setInterval(() => {
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % breakingNews.length);
+      }, 5000);
 
-    return () => clearInterval(timer);
+      return () => clearInterval(timer);
+    }
   }, [breakingNews]);
 
   const handlePrevSlide = () => {

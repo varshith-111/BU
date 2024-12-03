@@ -1,7 +1,7 @@
 'use client';
 
 import styles1 from '../styles/newslist.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import https from 'https';
 import BreakingNewsSlider from '../shared/breakingnewsslider';
@@ -18,13 +18,14 @@ export default function MobileComponent() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState(() => {
-  const isBrowser = typeof window !== 'undefined'
-  if(isBrowser){
-    const urlParams = new URLSearchParams(window.location.search);
-    const categoryFromUrl = urlParams.get('category');
-    return categoryFromUrl && categories.includes(categoryFromUrl) ? categoryFromUrl : 'ALL';
-  }
+    const isBrowser = typeof window !== 'undefined';
+    if (isBrowser) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryFromUrl = urlParams.get('category');
+      return categoryFromUrl && categories.includes(categoryFromUrl) ? categoryFromUrl : 'ALL';
+    }
   });
+  const hasFetched = useRef<string | null>(null);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -49,7 +50,10 @@ export default function MobileComponent() {
       }
     };
 
-    fetchNews();
+    if (hasFetched.current !== activeCategory) {
+      hasFetched.current = activeCategory || 'ALL';
+      fetchNews();
+    }
   }, [activeCategory]);
 
   useEffect(() => {
