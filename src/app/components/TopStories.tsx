@@ -5,6 +5,7 @@ import axios from "axios";
 import styles from "./styles/topStories.module.css"; // Ensure this CSS file exists
 import Link from "next/link";
 import { NewsItem } from "../types/newsItem";
+import Skeleton from 'react-loading-skeleton'; // Import the skeleton loader
 
 const TopStories = ({ numberOfStories = 3, showSeeMore = true }) => {
   const [stories, setStories] = useState<NewsItem[]>([]);
@@ -28,7 +29,18 @@ const TopStories = ({ numberOfStories = 3, showSeeMore = true }) => {
   }, [numberOfStories]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <div className={styles.skeletonContainer}>
+          <div className={styles.skeletonTitle} />
+          <div className={styles.skeletonDescription} />
+        </div>
+        <div className={styles.skeletonContainer}>
+          <div className={styles.skeletonTitle} />
+          <div className={styles.skeletonDescription} />
+        </div>
+      </>
+    );
   }
 
   return (

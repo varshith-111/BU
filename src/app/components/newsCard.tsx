@@ -52,7 +52,7 @@ const NewsCard = ({ article }: NewsCardProps) => {
       )}
 
       <div className={styles['content-text']}>
-        <p>{article.header}</p>
+        <p>{article.title}</p>
         <div dangerouslySetInnerHTML={{ __html: article.description }}></div>
       </div>
 

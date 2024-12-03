@@ -14,7 +14,7 @@ const ArticleCard = ({ newsItem }: { newsItem: NewsItem }) => {
         </div>
       )}
       <div style={styles.cardText}>
-        <h3 style={styles.title}>{newsItem.header}</h3>
+        <h3 style={styles.title}>{newsItem.title}</h3>
       </div>
     </div>
   );

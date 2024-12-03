@@ -19,8 +19,6 @@ const fetchArticlesByCategory = async (
     const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
     const response = await axios.get(`${baseUrl}/api/Articles/GetByCategory/${category}`);
     const articles = response.data?.data || [];
-    console.log('articles');
-    console.log(articles);
 
     if (articles.length <= 1) {
       const allResponse = await axios.get(`${baseUrl}/api/Articles/GetAll`, { httpsAgent });
@@ -98,7 +96,7 @@ export default function ArticleLayout({
       ) : (
         <>
           <div className={styles.leftContainer}>
-          <LeftBlog/>
+          <LeftBlog articles={relatedArticles}/>
           </div>
           <div className={styles.middleContainer}>
             {children}
