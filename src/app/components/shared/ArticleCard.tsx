@@ -1,22 +1,25 @@
 import { NewsItem } from '@/app/types/newsItem';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ArticleCard = ({ newsItem }: { newsItem: NewsItem }) => {
   return (
-    <div style={styles.card}>
-      {newsItem.imageUrl && newsItem.imageUrl.length > 0 && (
-        <div style={styles.imageWrapper}>
-          <Image
-            src={newsItem.imageUrl[0]}
-            alt={`Image for ${newsItem.title}`}
-            width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }}
-          />
+    <Link href={`/article/${newsItem.id}/${newsItem.category}/${encodeURIComponent(newsItem.title.replace(/ /g, '-'))}`}>
+      <div style={styles.card}>
+        {newsItem.imageUrl && newsItem.imageUrl.length > 0 && (
+          <div style={styles.imageWrapper}>
+            <Image
+              src={newsItem.imageUrl[0]}
+              alt={`Image for ${newsItem.title}`}
+              width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }}
+            />
+          </div>
+        )}
+        <div style={styles.cardText}>
+          <h3 style={styles.title}>{newsItem.title}</h3>
         </div>
-      )}
-      <div style={styles.cardText}>
-        <h3 style={styles.title}>{newsItem.title}</h3>
       </div>
-    </div>
+    </Link>
   );
 };
 

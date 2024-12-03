@@ -6,6 +6,26 @@ interface EmbedRendererProps {
   embedHtml: string;
 }
 
+const cache = {
+    data: null,
+    timestamp: 0,
+};
+
+const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes in milliseconds
+
+async function fetchData() {
+    const now = Date.now();
+    if (cache.data && (now - cache.timestamp < CACHE_DURATION)) {
+        return cache.data; // Return cached data if it's still valid
+    }
+
+    // Make the API call if no valid cache exists
+    const response = await fetch("YOUR_API_ENDPOINT");
+    cache.data = await response.json();
+    cache.timestamp = now; // Update the timestamp
+    return cache.data;
+}
+
 const EmbedRenderer = ({ embedHtml }: EmbedRendererProps) => {
   useEffect(() => {
     // Define a type for the window object that includes twttr
