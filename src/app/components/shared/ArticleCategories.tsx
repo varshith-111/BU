@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import Link from 'next/link';
 import styles from '../styles/categories.module.css';
 
 export default function ArticleCategories() {

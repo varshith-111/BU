@@ -17,8 +17,9 @@ export default function Header() {
   };
 
   // New function to handle clicks outside the menu
-  const handleClickOutside = (event: any) => {
-    if (isMenuOpen && !event.target.closest(`.${styles.menu}`) && !event.target.closest(`.${styles.menuBtn}`)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    if (isMenuOpen && !target.closest(`.${styles.menu}`) && !target.closest(`.${styles.menuBtn}`)) {
       setIsMenuOpen(false);
     }
   };
