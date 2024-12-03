@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import ArticleCard from '../shared/ArticleCard';
 import { NewsItem } from '@/app/types/newsItem';
 
