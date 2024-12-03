@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import https from "https";
 import axios from "axios";
 import { NewsItem } from "@/app/types/newsItem";
@@ -32,8 +32,8 @@ const fetchArticlesByCategory = async (
   }
 };
 
-const useWindowWidth = (threshold: number): boolean => {
-  const [isMobile, setIsMobile] = useState(false);
+const useWindowWidth = (threshold: number): boolean | null => {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
     const checkWidth = () => setIsMobile(window.innerWidth <= threshold);
@@ -57,14 +57,26 @@ export default function ArticleLayout({
   const id = params.slug[0];
   const [relatedArticles, setRelatedArticles] = useState<NewsItem[]>([]);
   const isMobile = useWindowWidth(768);
+  
+  // Ref to store previous category and id
+  const prevCategoryRef = useRef<string>();
+  const prevIdRef = useRef<string>();
 
   useEffect(() => {
-    const fetchArticles = async () => {
-      const articles = await fetchArticlesByCategory(category, id);
-      setRelatedArticles(articles);
-    };
+    // Check if category or id has changed
+    if (prevCategoryRef.current !== category || prevIdRef.current !== id) {
+      console.log("Fetching articles for category:", category, "and id:", id);
+      const fetchArticles = async () => {
+        const articles = await fetchArticlesByCategory(category, id);
+        setRelatedArticles(articles);
+      };
 
-    fetchArticles();
+      fetchArticles();
+
+      // Update refs with current values
+      prevCategoryRef.current = category;
+      prevIdRef.current = id;
+    }
   }, [category, id]);
 
   const MoreForYouHeader = (
@@ -86,8 +98,10 @@ export default function ArticleLayout({
   return (
     <>
     <ArticleCategories />
-    <main className={isMobile ? undefined : styles.mainContainer}>
-      {isMobile ? (
+    <main className={isMobile === null ? undefined : isMobile ? undefined : styles.mainContainer}>
+      {isMobile === null ? (
+        <div>Loading...</div>
+      ) : isMobile ? (
         <>
           {children}
           {MoreForYouHeader}
