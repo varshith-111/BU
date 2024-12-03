@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { IoHomeOutline, IoHome, IoSearchOutline, IoSearch, IoPersonOutline, IoPerson } from 'react-icons/io5';
+import { IoHomeOutline, IoHome, IoSearchOutline, IoSearch, IoPersonOutline, IoPerson, IoTrendingUp, IoTrendingUpOutline, IoBonfireOutline, IoLogoFirebase } from 'react-icons/io5';
 import styles from '../styles/footer.module.css';
 
 export default function Footer() {
@@ -23,19 +23,27 @@ export default function Footer() {
           {activeTab === 'home' ? <IoHome /> : <IoHomeOutline />}
           <span>Home</span>
         </button>
-        <button 
+        {/* <button 
           onClick={() => setActiveTab('search')} 
           className={activeTab === 'search' ? styles.active : ''}
         >
           {activeTab === 'search' ? <IoSearch /> : <IoSearchOutline />}
           <span>Search</span>
-        </button>
+        </button> */}
         <button 
-          onClick={() => setActiveTab('profile')} 
-          className={activeTab === 'profile' ? styles.active : ''}
+           onClick={handleHomeClick} 
+          className={activeTab === 'trending' ? styles.active : ''}
         >
-          {activeTab === 'profile' ? <IoPerson /> : <IoPersonOutline />}
-          <span>Profile</span>
+          {activeTab === 'trending' ? (
+            <>
+              <IoLogoFirebase />
+            </>
+          ) : (
+            <>
+              <IoBonfireOutline />
+            </>
+          )}
+          <span>Trending</span>
         </button>
       </nav>
     </footer>

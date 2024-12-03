@@ -58,12 +58,12 @@ export default function ArticleCategories() {
           onScroll={checkArrows}
         >
           {categories.map((category) => (
-            <li key={category}>
-              <Link
+            <li key={category} >
+              <a
                 href={`/?category=${category}`}
               >
                 {category}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
