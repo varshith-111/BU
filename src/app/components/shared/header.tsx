@@ -53,11 +53,11 @@ export default function Header() {
         >
           {categories.map((category) => (
             <li key={category}>
-              <a
+              <Link
                 href={`/?category=${category}`}
               >
                 {category}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

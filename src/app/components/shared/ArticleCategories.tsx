@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import styles from '../styles/categories.module.css';
+import Link from 'next/link';
 
 export default function ArticleCategories() {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
@@ -58,11 +59,11 @@ export default function ArticleCategories() {
         >
           {categories.map((category) => (
             <li key={category} >
-              <a
+              <Link
                 href={`/?category=${category}`}
               >
                 {category}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
