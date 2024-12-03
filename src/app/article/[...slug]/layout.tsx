@@ -16,8 +16,8 @@ const fetchArticlesByCategory = async (
   id: string
 ): Promise<NewsItem[]> => {
   try {
-    const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
-    const response = await axios.get(`${baseUrl}/api/Articles/GetByCategory/${category}`);
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await axios.get(`${baseUrl}/Articles/GetByCategory/${category}`);
     const articles = response.data?.data || [];
 
     if (articles.length <= 1) {

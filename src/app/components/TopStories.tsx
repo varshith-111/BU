@@ -19,8 +19,8 @@ const TopStories = ({ numberOfStories = 3, showSeeMore = true }) => {
 
       setLoading(true);
       try {
-        const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
-        const response = await axios.get(`${baseUrl}/api/Articles/GetAll`);
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        const response = await axios.get(`${baseUrl}/Articles/GetAll`);
         const allStories = response.data.data;
 
         // Set stories based on the number of stories available

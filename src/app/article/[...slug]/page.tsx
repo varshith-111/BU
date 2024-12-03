@@ -19,10 +19,10 @@ const agent = new https.Agent({
 });
 
 const fetchArticleById = async (id: string): Promise<Article | null> => {
-  const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   
   return new Promise((resolve, reject) => {
-    const req = request(`${baseUrl}/api/Articles/GetbyId/${id}`, { agent }, (res) => {
+    const req = request(`${baseUrl}/Articles/GetbyId/${id}`, { agent }, (res) => {
       let data = '';
 
       res.on('data', (chunk) => {

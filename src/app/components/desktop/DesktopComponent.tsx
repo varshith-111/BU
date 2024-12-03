@@ -48,11 +48,11 @@ export default function DesktopComponent() {
     const fetchNews = async () => {
       setLoading(true);
       try {
-        const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
         const apiUrl =
           activeCategory === "ALL"
-            ? `${baseUrl}/api/Articles/GetAll`
-            : `${baseUrl}/api/Articles/GetByCategory/${activeCategory}`;
+            ? `${baseUrl}/Articles/GetAll`
+            : `${baseUrl}/Articles/GetByCategory/${activeCategory}`;
 
         const agent = new https.Agent({
           rejectUnauthorized: false,

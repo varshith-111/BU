@@ -22,8 +22,8 @@ export default function BreakingNewsSlider() {
       hasFetched.current = true;
 
       try {
-        const baseUrl = `https://paltinumnewsapi-ayfheaamcefrgvg5.canadacentral-01.azurewebsites.net/`;
-        const response = await axios.get(`${baseUrl}/api/Articles/GetAll`, {
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        const response = await axios.get(`${baseUrl}/Articles/GetAll`, {
           httpsAgent: new https.Agent({ rejectUnauthorized: false })
         });
         setBreakingNews(response.data.data);
