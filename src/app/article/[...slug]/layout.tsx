@@ -8,6 +8,7 @@ import TopStories from "@/app/components/TopStories";
 import CategoryNewsList from "@/app/components/shared/CategoryNewsList";
 import LeftBlog from "@/app/components/desktop/LeftBlog";
 import ArticleCategories from "@/app/components/shared/ArticleCategories";
+import { useArticles } from "@/app/context/ArticlesContext";
 
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
@@ -53,9 +54,9 @@ export default function ArticleLayout({
   children: React.ReactNode;
   params: { slug: string[] };
 }) {
+  const { relatedArticles, fetchArticles } = useArticles();
   const category = params.slug[1];
   const id = params.slug[0];
-  const [relatedArticles, setRelatedArticles] = useState<NewsItem[]>([]);
   const isMobile = useWindowWidth(768);
   
   // Ref to store previous category and id
@@ -66,12 +67,7 @@ export default function ArticleLayout({
     // Check if category or id has changed
     if (prevCategoryRef.current !== category || prevIdRef.current !== id) {
       console.log("Fetching articles for category:", category, "and id:", id);
-      const fetchArticles = async () => {
-        const articles = await fetchArticlesByCategory(category, id);
-        setRelatedArticles(articles);
-      };
-
-      fetchArticles();
+      fetchArticles(category, id);
 
       // Update refs with current values
       prevCategoryRef.current = category;

@@ -4,6 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 import Footer from "./components/shared/footer";
 import Header from "./components/shared/header";
+import { ArticlesProvider } from './context/ArticlesContext';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,11 +36,12 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-
-        <main style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        <Header />
-          {children}
-        </main>
+        <ArticlesProvider>
+          <main style={{ maxWidth: '1100px', margin: '0 auto' }}>
+            <Header />
+            {children}
+          </main>
+        </ArticlesProvider>
         <Script
           src="https://platform.twitter.com/widgets.js"
           strategy="lazyOnload"

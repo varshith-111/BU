@@ -5,6 +5,7 @@ import axios from "axios";
 import styles from "./styles/topStories.module.css"; // Ensure this CSS file exists
 import Link from "next/link";
 import { NewsItem } from "../types/newsItem";
+import { articlesApi } from '../services/api'; // Import the articlesApi
 
 
 const TopStories = ({ numberOfStories = 3, showSeeMore = true }) => {
@@ -19,9 +20,7 @@ const TopStories = ({ numberOfStories = 3, showSeeMore = true }) => {
 
       setLoading(true);
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        const response = await axios.get(`${baseUrl}/Articles/GetAll`);
-        const allStories = response.data.data;
+        const allStories = await articlesApi.getAll(); // Use articlesApi to fetch stories
 
         // Set stories based on the number of stories available
         setStories(allStories.slice(0, numberOfStories));

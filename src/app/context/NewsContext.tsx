@@ -1,40 +1,43 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import axios from 'axios';
 import https from 'https';
+import { NewsItem as NewsItemType } from '@/app/types/newsItem';
 
-// Update the NewsItem type to match the API response
-type NewsItem = {
+// Local type definition
+interface NewsContextItem {
   id: string;
-  imageUrl: string[];  // Changed to string array
+  imageUrl: string[];
   title: string;
   category: string;
   description: string;
   header: string;
   publishedOn: string;
   publishedBy: string;
-};
+}
 
 // Add API response type
 type ApiResponse = {
-  data: NewsItem[];
+  data: NewsContextItem[];
   status: boolean;
   message: string;
   responceCode: string;
 };
 
 type NewsContextType = {
-  news: NewsItem[];
+  news: NewsContextItem[];
   category: string;
   setCategory: (category: string) => void;
   loading: boolean;
+  newsItem: NewsContextItem | null;
+  setNewsItem: (item: NewsContextItem | null) => void;
 };
 
 const NewsContext = createContext<NewsContextType | undefined>(undefined);
 
 export function NewsProvider({ children }: { children: ReactNode }) {
-  const [news, setNews] = useState<NewsItem[]>([]);
+  const [news, setNews] = useState<NewsContextItem[]>([]);
   const [category, setCategory] = useState(() => {
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
@@ -43,6 +46,7 @@ export function NewsProvider({ children }: { children: ReactNode }) {
     return 'ALL';
   });
   const [loading, setLoading] = useState(false);
+  const [newsItem, setNewsItem] = useState<NewsContextItem | null>(null);
 
   useEffect(() => {
     async function fetchNews() {
@@ -73,7 +77,7 @@ export function NewsProvider({ children }: { children: ReactNode }) {
   }, [category]);
 
   return (
-    <NewsContext.Provider value={{ news, category, setCategory, loading }}>
+    <NewsContext.Provider value={{ news, category, setCategory, loading, newsItem, setNewsItem }}>
       {children}
     </NewsContext.Provider>
   );
