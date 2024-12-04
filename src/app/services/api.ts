@@ -1,7 +1,5 @@
 import axios from 'axios';
 import https from 'https';
-import { NewsItem } from '../types/newsItem';
-
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 const agent = new https.Agent({ rejectUnauthorized: false });
 
