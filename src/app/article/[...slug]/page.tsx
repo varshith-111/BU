@@ -50,8 +50,6 @@ const incrementArticleViews = async (id: string): Promise<void> => {
     const req = request(`${baseUrl}/${id}`, { method: 'POST' }, (res) => {
       if (res.statusCode === 200) {
         resolve();
-      } else {
-        reject(new Error(`Failed to increment views: ${res.statusCode}`));
       }
     });
 
