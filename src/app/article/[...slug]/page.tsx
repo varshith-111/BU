@@ -2,7 +2,6 @@ import NewsCard from '@/app/components/newsCard';
 import { notFound } from 'next/navigation';
 import https from 'https';
 import { request } from 'https';
-import { NextApiRequest, NextApiResponse } from 'next';
 
 interface Article {
   id: string;
