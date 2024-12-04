@@ -2,6 +2,7 @@ import NewsCard from '@/app/components/newsCard';
 import { notFound } from 'next/navigation';
 import https from 'https';
 import { request } from 'https';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 interface Article {
   id: string;
@@ -43,14 +44,21 @@ const fetchArticleById = async (id: string): Promise<Article | null> => {
   });
 };
 
-const incrementArticleViews = async (id: string): Promise<void> => {
+const checkArticleViews = async (id: string): Promise<number | null> => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  
+
   return new Promise((resolve, reject) => {
-    const req = request(`${baseUrl}/${id}`, { method: 'POST' }, (res) => {
-      if (res.statusCode === 200) {
-        resolve();
-      }
+    const req = request(`${baseUrl}/Articles/checkViews/${id}`, { agent }, (res) => {
+      let data = '';
+
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      res.on('end', () => {
+        const jsonData = JSON.parse(data);
+        resolve(jsonData.views || null); // Assuming the response contains a 'views' field
+      });
     });
 
     req.on('error', (e) => {
@@ -96,7 +104,6 @@ export default async function ArticlePage({ params }: { params: { slug: string[]
     notFound();
   }
 
-  await incrementArticleViews(id);
 
   return (
     <>
