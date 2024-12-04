@@ -20,7 +20,7 @@ const agent = new https.Agent({
 
 const fetchArticleById = async (id: string): Promise<Article | null> => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  
+
   return new Promise((resolve, reject) => {
     const req = request(`${baseUrl}/Articles/GetbyId/${id}`, { agent }, (res) => {
       let data = '';
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
   if (!Array.isArray(params.slug) || params.slug.length === 0) {
     notFound();
   }
-  
+
   const id = params.slug[0];
   const article = await fetchArticleById(id);
 
@@ -67,7 +67,11 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
 }
 
 export default async function ArticlePage({ params }: { params: { slug: string[] } }) {
-  const id = await params.slug[0];
+  if (!Array.isArray(params.slug) || params.slug.length === 0) {
+    notFound();
+  }
+
+  const id = params.slug[0];
   const article = await fetchArticleById(id);
 
   if (!article) {
