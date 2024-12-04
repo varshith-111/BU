@@ -12,10 +12,6 @@ export default function Header() {
     'Education', 'Environment', 'Sports', 'Literature'
   ];
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   // New function to handle clicks outside the menu
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as HTMLElement;

@@ -3,7 +3,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import axios from 'axios';
 import https from 'https';
-import { NewsItem as NewsItemType } from '@/app/types/newsItem';
 
 // Local type definition
 interface NewsContextItem {
