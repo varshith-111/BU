@@ -2,11 +2,10 @@
 
 import styles1 from '../styles/newslist.module.css';
 import { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
-import https from 'https';
 import BreakingNewsSlider from '../shared/breakingnewsslider';
 import CategoryNewsList from '../shared/CategoryNewsList';
 import Categories from '../shared/Categories';
+import { articlesApi } from '../../services/api';
 
 const categories = [
   'ALL', 'Politics', 'Art', 'Food', 'Fashion', 'Technology',
@@ -17,31 +16,18 @@ const categories = [
 export default function MobileComponent() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState(() => {
-    const isBrowser = typeof window !== 'undefined';
-    if (isBrowser) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const categoryFromUrl = urlParams.get('category');
-      return categoryFromUrl && categories.includes(categoryFromUrl) ? categoryFromUrl : 'ALL';
-    }
-  });
+  const [activeCategory, setActiveCategory] = useState<string>('ALL');
   const hasFetched = useRef<string | null>(null);
 
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true);
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        const apiUrl = activeCategory === 'ALL' 
-          ? `${baseUrl}/Articles/GetAll` 
-          : `${baseUrl}/Articles/GetByCategory/${activeCategory}`;
+        const response = activeCategory === 'ALL' 
+          ? await articlesApi.getAll()
+          : await articlesApi.getByCategory(activeCategory || 'ALL');
         
-        const agent = new https.Agent({  
-          rejectUnauthorized: false 
-        });
-
-        const response = await axios.get(apiUrl, { httpsAgent: agent });
-        setNews(response.data.data);
+        setNews(response);
       } catch (error) {
         console.error('Error fetching news:', error);
         alert(`Failed to fetch news: ${(error as Error).message}`);

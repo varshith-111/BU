@@ -4,10 +4,9 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from '../styles/breakingnewsslider.module.css';
-import axios from 'axios';
-import https from 'https';
 import { useRouter } from 'next/navigation';
 import { NewsItem } from '@/app/types/newsItem';
+import { articlesApi } from '@/app/services/api';
 
 export default function BreakingNewsSlider() {
   const [breakingNews, setBreakingNews] = useState<NewsItem[]>([]);
@@ -22,11 +21,8 @@ export default function BreakingNewsSlider() {
       hasFetched.current = true;
 
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        const response = await axios.get(`${baseUrl}/Articles/GetAll`, {
-          httpsAgent: new https.Agent({ rejectUnauthorized: false })
-        });
-        setBreakingNews(response.data.data);
+        const response = await articlesApi.getAll()
+        setBreakingNews(response);
       } catch (error) {
         console.error('Error fetching breaking news:', error);
       }

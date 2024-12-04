@@ -1,37 +1,11 @@
 'use client';
 import React, { useEffect, useState, useRef } from "react";
-import https from "https";
-import axios from "axios";
-import { NewsItem } from "@/app/types/newsItem";
 import styles from "./layout.module.css";
 import TopStories from "@/app/components/TopStories";
 import CategoryNewsList from "@/app/components/shared/CategoryNewsList";
 import LeftBlog from "@/app/components/desktop/LeftBlog";
 import ArticleCategories from "@/app/components/shared/ArticleCategories";
 import { useArticles } from "@/app/context/ArticlesContext";
-
-const httpsAgent = new https.Agent({ rejectUnauthorized: false });
-
-const fetchArticlesByCategory = async (
-  category: string,
-  id: string
-): Promise<NewsItem[]> => {
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-    const response = await axios.get(`${baseUrl}/Articles/GetByCategory/${category}`);
-    const articles = response.data?.data || [];
-
-    if (articles.length <= 1) {
-      const allResponse = await axios.get(`${baseUrl}/api/Articles/GetAll`, { httpsAgent });
-      return allResponse.data?.data?.filter((article: NewsItem) => article.id !== id) || [];
-    }
-
-    return articles.filter((article: NewsItem) => article.id !== id);
-  } catch (error) {
-    console.error("Error fetching articles:", error);
-    return [];
-  }
-};
 
 const useWindowWidth = (threshold: number): boolean | null => {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);

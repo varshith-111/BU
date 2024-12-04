@@ -2,13 +2,12 @@
 
 import styles1 from "../styles/newslist.module.css";
 import { useEffect, useState, useRef } from "react";
-import axios from "axios";
-import https from "https";
 import styles from "../styles/desktop.module.css";
 import Categories from "../shared/Categories";
 import TopLayout from "../topLayout";
 import ThreeHundTwoFifty from "../advertisment/ThreeHundTwoFifty/ThreeHundTwoFifty";
 import DesktopCategoriesLayout from "./DesktopCategoriesLayout";
+import { articlesApi } from "@/app/services/api";
 
 const categories = [
   "ALL",
@@ -48,18 +47,10 @@ export default function DesktopComponent() {
     const fetchNews = async () => {
       setLoading(true);
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        const apiUrl =
-          activeCategory === "ALL"
-            ? `${baseUrl}/Articles/GetAll`
-            : `${baseUrl}/Articles/GetByCategory/${activeCategory}`;
-
-        const agent = new https.Agent({
-          rejectUnauthorized: false,
-        });
-
-        const response = await axios.get(apiUrl, { httpsAgent: agent });
-        setNews(response.data.data);
+        const response = activeCategory === 'ALL' 
+        ? await articlesApi.getAll()
+        : await articlesApi.getByCategory(activeCategory || 'ALL');
+        setNews(response);
       } catch (error) {
         console.error("Error fetching news:", error);
         alert(`Failed to fetch news: ${(error as Error).message}`);
