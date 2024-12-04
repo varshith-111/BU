@@ -60,6 +60,7 @@ export default function ArticleCategories() {
           {categories.map((category) => (
             <li key={category} >
               <Link
+                  className={styles.linkColor} 
                 href={`/?category=${category}`}
               >
                 {category}

@@ -35,13 +35,13 @@ export default function Header() {
   return (
     <header className={styles.headerNav}>
       <nav>
-        <button className={styles.menuBtn} onClick={toggleMenu}>
+        {/* <button className={styles.menuBtn} onClick={toggleMenu}>
           <div className={`${styles.hamburger} ${isMenuOpen ? styles.open : ''}`}>
             <span></span>
             <span></span>
             <span></span>
           </div>
-        </button>
+        </button> */}
         <Link href="/" className={styles.anchor}>
           <h1 className={styles.hstyle}>Discover</h1>
         </Link>

@@ -1,0 +1,25 @@
+/* Footer.module.css */
+
+.footer {
+    background-color: #003366; /* Match blue color */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .links {
+    margin-bottom: 10px;
+  }
+  
+  .link {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+  }
+  
+  .copyright p {
+    margin: 5px 0;
+  }
+  

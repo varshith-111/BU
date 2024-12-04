@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styles from '../components/styles/layouts.module.css'
+import FooterD from '../components/shared/footerD';
 
 const DesktopLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (

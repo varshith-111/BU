@@ -61,3 +61,8 @@
 .rightArrow {
   right: 5px;
 }
+
+.linkColor {
+  text-decoration: none;
+  color: black;
+}

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import axios from "axios";
 import styles from "./styles/topStories.module.css"; // Ensure this CSS file exists
 import Link from "next/link";
 import { NewsItem } from "../types/newsItem";
