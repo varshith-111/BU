@@ -6,10 +6,6 @@ interface EmbedRendererProps {
   embedHtml: string;
 }
 
-const cache = {
-    data: null,
-    timestamp: 0,
-};
 
 const EmbedRenderer = ({ embedHtml }: EmbedRendererProps) => {
   useEffect(() => {
