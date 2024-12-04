@@ -40,6 +40,7 @@ export default function DesktopComponent() {
         : "ALL";
     }
   });
+  
 
   const hasFetched = useRef<string | null>(null); // Track fetched category
 
