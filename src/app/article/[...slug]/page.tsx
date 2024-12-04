@@ -43,6 +43,26 @@ const fetchArticleById = async (id: string): Promise<Article | null> => {
   });
 };
 
+const incrementArticleViews = async (id: string): Promise<void> => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  
+  return new Promise((resolve, reject) => {
+    const req = request(`${baseUrl}/${id}`, { method: 'POST' }, (res) => {
+      if (res.statusCode === 200) {
+        resolve();
+      } else {
+        reject(new Error(`Failed to increment views: ${res.statusCode}`));
+      }
+    });
+
+    req.on('error', (e) => {
+      reject(e);
+    });
+
+    req.end();
+  });
+};
+
 export async function generateMetadata({ params }: { params: { slug: string[] } }) {
   if (!Array.isArray(params.slug) || params.slug.length === 0) {
     notFound();
@@ -77,6 +97,8 @@ export default async function ArticlePage({ params }: { params: { slug: string[]
   if (!article) {
     notFound();
   }
+
+  await incrementArticleViews(id);
 
   return (
     <>
