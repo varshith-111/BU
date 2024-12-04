@@ -102,7 +102,7 @@ export default async function ArticlePage({ params }: { params: { slug: string[]
   if (!article) {
     notFound();
   }
-
+  await checkArticleViews(id)
 
   return (
     <>
