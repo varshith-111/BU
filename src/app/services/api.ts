@@ -10,7 +10,9 @@ const api = axios.create({
   httpsAgent: agent
 });
 
-const cache: { [key: string]: NewsItem[] } = {}; // Cache object to store fetched data
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const cache: { [key: string]: any } = {}; // Cache object to store fetched data
+
 
 export const articlesApi = {
   getByCategory: async (category: string) => {
