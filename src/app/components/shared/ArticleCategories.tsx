@@ -10,11 +10,7 @@ export default function ArticleCategories() {
   const [showRightArrow, setShowRightArrow] = useState(false);
   const tabsRef = useRef<HTMLUListElement>(null);
 
-  const categories = [
-    'ALL', 'Politics', 'Movies', 'Art', 'Food', 'Fashion', 'Technology',
-    'Science', 'Health', 'Travel', 'Business', 'Entertainment',
-    'Education', 'Environment', 'Sports', 'Literature'
-  ];
+  const categories = ['Politics','Movies', 'Sports','Health', 'Business', 'Entertainment'];
 
   const checkArrows = () => {
     if (tabsRef.current) {

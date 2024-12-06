@@ -7,12 +7,7 @@ import CategoryNewsList from '../shared/CategoryNewsList';
 import Categories from '../shared/Categories';
 import { articlesApi } from '../../services/api';
 
-const categories = [
-  'ALL', 'Politics', 'Art', 'Food', 'Fashion', 'Technology',
-  'Science', 'Health', 'Travel', 'Business', 'Entertainment',
-  'Education', 'Environment', 'Sports', 'Literature'
-];
-
+const categories = ['Politics','Movies', 'Sports','Health', 'Business', 'Entertainment'];
 export default function MobileComponent() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,6 +42,8 @@ export default function MobileComponent() {
     if (isBrowser) {
         const urlParams = new URLSearchParams(window.location.search);
         const categoryFromUrl = urlParams.get('category');
+        console.log('categoryFromUrl');
+        console.log(categoryFromUrl);
         setActiveCategory(categoryFromUrl && categories.includes(categoryFromUrl) ? categoryFromUrl : 'ALL');
     }
   }, []);

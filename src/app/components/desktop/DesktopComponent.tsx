@@ -9,23 +9,7 @@ import ThreeHundTwoFifty from "../advertisment/ThreeHundTwoFifty/ThreeHundTwoFif
 import DesktopCategoriesLayout from "./DesktopCategoriesLayout";
 import { articlesApi } from "@/app/services/api";
 
-const categories = [
-  "ALL",
-  "Politics",
-  "Art",
-  "Food",
-  "Fashion",
-  "Technology",
-  "Science",
-  "Health",
-  "Travel",
-  "Business",
-  "Entertainment",
-  "Education",
-  "Environment",
-  "Sports",
-  "Literature",
-];
+const categories = ['Politics','Movies', 'Sports','Health', 'Business', 'Entertainment'];
 
 export default function DesktopComponent() {
   const [news, setNews] = useState([]);
@@ -62,6 +46,8 @@ export default function DesktopComponent() {
 
     // Check if news has already been fetched for the current category
     if (hasFetched.current !== activeCategory) {
+      console.log('activeCategory------------------------');
+      console.log(activeCategory);
       hasFetched.current = activeCategory || "ALL"; // Update the fetched category
       fetchNews();
     }

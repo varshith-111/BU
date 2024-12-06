@@ -38,9 +38,9 @@ export default function Header() {
             <span></span>
           </div>
         </button> */}
-        <Link href="/" className={styles.anchor}>
+        <a href="/?category=ALL" className={styles.anchor}>
           <h1 className={styles.hstyle}>Discover</h1>
-        </Link>
+        </a>
         <span className={styles.subheader}>News from all over the world</span>
       </nav>
       <div className={`${styles.menu} ${isMenuOpen ? styles.open : ''}`}>
@@ -50,7 +50,7 @@ export default function Header() {
           {categories.map((category) => (
             <li key={category}>
               <Link
-                href={`/?category=${category}`}
+                href="/"
               >
                 {category}
               </Link>

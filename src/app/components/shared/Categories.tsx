@@ -13,11 +13,7 @@ export default function Categories({ setCategory }: { setCategory: (category: st
   const router = useRouter();
   const pathname = usePathname();
 
-  const categories = [
-    'ALL', 'Politics','Movies','Art', 'Food', 'Fashion', 'Technology',
-    'Science', 'Health', 'Travel', 'Business', 'Entertainment',
-    'Education', 'Environment', 'Sports', 'Literature'
-  ];
+  const categories = ['Politics','Movies', 'Sports','Health', 'Business', 'Entertainment'];
 
   const checkArrows = () => {
     if (tabsRef.current) {
@@ -81,7 +77,7 @@ export default function Categories({ setCategory }: { setCategory: (category: st
           {categories.map((category) => (
             <li
               key={category}
-              className={activeCategory === category ? styles.active : ''}
+              className={activeCategory === category && category !== 'ALL' ? styles.active : ''}
               onClick={() => handleCategoryChange(category)}
             >
               {category}
