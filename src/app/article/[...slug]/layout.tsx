@@ -29,6 +29,7 @@ export default function ArticleLayout({
   params: { slug: string[] };
 }) {
   const { relatedArticles, fetchArticles } = useArticles();
+  const limitedArticles = relatedArticles.slice(0, 10);
   const category = params.slug[1];
   const id = params.slug[0];
   const isMobile = useWindowWidth(768);
@@ -75,17 +76,17 @@ export default function ArticleLayout({
         <>
           {children}
           {MoreForYouHeader}
-          <CategoryNewsList news={relatedArticles} />
+          <CategoryNewsList news={limitedArticles} />
         </>
       ) : (
         <>
           <div className={styles.leftContainer}>
-          <LeftBlog articles={relatedArticles}/>
+          <LeftBlog articles={limitedArticles}/>
           </div>
           <div className={styles.middleContainer}>
             {children}
             {MoreForYouHeader}
-            <CategoryNewsList news={relatedArticles} />
+            <CategoryNewsList news={limitedArticles} />
           </div>
           <div className={styles.rightContainer}>
             <TopStories />

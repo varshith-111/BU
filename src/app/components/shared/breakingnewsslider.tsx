@@ -21,8 +21,9 @@ export default function BreakingNewsSlider() {
       hasFetched.current = true;
 
       try {
-        const response = await articlesApi.getAll()
-        setBreakingNews(response);
+        const response = await articlesApi.getAll();
+        const limitedResponse = response.slice(0, 10);
+        setBreakingNews(limitedResponse);
       } catch (error) {
         console.error('Error fetching breaking news:', error);
       }
